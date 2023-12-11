@@ -5,7 +5,6 @@ this is my dotfiles!!
 ```
 git clone https://github.com/rnnno/dotfiles && cd dotfiles && install.sh
 
-
 ```
 
 # TODO
