@@ -1,9 +1,9 @@
 # Dotfiles
 this is my dotfiles!!
 
-# usage
+# install
 ```
-git clone https://github.com/rnnno/dotfiles && cd dotfiles && install.sh
+git clone https://github.com/rnnno/dotfiles && cd dotfiles && ./install.sh
 
 ```
 
