@@ -1,6 +1,8 @@
 # nvim compiled file
 config/nvim/plugin/
 
+Brewfile.lock.json
+
 
 
 

@@ -1,5 +1,19 @@
 #!/usr/bin/env bash
 
+
+install_brew_file() {
+  if [[ !command -v brew &> /dev/null ]]; then
+    echo "Homebrew is not installed. Install Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  else
+    echo "Homebrew is already installed."
+  fi
+
+  # TODO: やる
+  brew bundle install --file=brewfile
+  
+}
+
 make_backup() {
   echo "make backup..."
   backup_path="$HOME/.backup"
