@@ -22,7 +22,7 @@ keymap('n', 'K', vim.lsp.buf.hover)
 keymap('n', 'gd', vim.lsp.buf.definition)
 keymap('n', 'gi', vim.lsp.buf.implementation)
 keymap('n', 'gr', vim.lsp.buf.references)
-keymap('n', '<space>f', vim.lsp.buf.formatting)
+-- keymap('n', '<space>f', vim.lsp.buf.formatting)
 
 keymap("n", "<M-j>", "<Cmd>move .+1<CR>==")
 keymap("x", "<M-j>", ":move '>+1<CR>gv=gv")

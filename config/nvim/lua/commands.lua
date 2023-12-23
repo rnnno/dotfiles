@@ -1,4 +1,4 @@
-vim.cmd.colorscheme 'carbonfox'
+vim.cmd.colorscheme 'nordfox'
 -- vim.cmd.colorscheme 'catppuccin-macchiato'
 
 vim.g['fern#renderer'] = 'devicons'

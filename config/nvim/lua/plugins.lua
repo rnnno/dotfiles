@@ -29,6 +29,7 @@ require("packer").startup(function()
   use 'nvim-tree/nvim-tree.lua'
   use 'lambdalisue/fern.vim'
   use 'lambdalisue/fern-renderer-devicons.vim'
+  use 'lambdalisue/fern-renderer-nerdfont.vim'
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.1',
     requires = { { 'nvim-lua/plenary.nvim' } }

@@ -78,7 +78,7 @@ vim.cmd('let g:vsnip_filetypes = {}')
 
 require 'nvim-treesitter.configs'.setup {
   ensure_installed = { "c", "lua", "typescript", "tsx", "javascript", "json", "lua", "bash", "astro", "markdown",
-    "css", "scss", "yaml", "toml", "vue", "php", "html", "vim", "help", "query" },
+    "css", "scss", "yaml", "toml", "vue", "php", "html", "vim", "query" },
 
   sync_install = false,
 
