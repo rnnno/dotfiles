@@ -1,5 +1,11 @@
 
 
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*:default' menu select=1
+
+chpwd () { eza --group-directories-first --icons }
+
+
 eval "$(starship init zsh)"
 
 

@@ -94,9 +94,9 @@ $character"""
 [ fill ]
 symbol = '─'
 
+
 [ memory_usage ]
 threshold = 0
-# format = 'via $symbol [${ram_pct}]($style) ]'
 format = 'via $symbol[$ram_pct]($style) '
 disabled = false
 
@@ -114,17 +114,20 @@ style = 'green'
 [ cmd_duration ]
 format = ' took [$duration]($style) '
 
-[directory]
+[ directory ]
+format = '[ $path]($style)[$read_only]($read_only_style) '
+style = 'blue'
 truncate_to_repo=false
 
 
-[os]
+[ os ]
+style = "cyan"
 disabled=false
 
-[os.symbols]
-Arch=" "
-Manjaro = " "
-Macos=" "
-Windows=" "
-Linux=" "
+[ os.symbols ]
+Arch="  "
+Manjaro = "  "
+Macos="  "
+Windows="  "
+Linux="  "
 
