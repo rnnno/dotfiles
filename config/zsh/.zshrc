@@ -1,9 +1,10 @@
 
 source $HOME/.config/zsh/basic.zsh
 
-for f in $HOME/.config/zsh/rc/* ;
-do
-  source $f
-done
 
+source $HOME/.config/zsh/rc/plugins.zsh
+
+source $HOME/.config/zsh/rc/option.zsh
+
+source $HOME/.config/zsh/rc/alias.zsh
 

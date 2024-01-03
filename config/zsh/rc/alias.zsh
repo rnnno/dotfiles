@@ -19,4 +19,13 @@ alias bat='bat --style=numbers'
 alias sudo='sudo '
 alias :q='exit'
 
+function my_bd () {
+  if [[ $# -eq 0 ]]; then
+    bd 1
+  else
+    bd "$@"
+  fi
+}
+alias bd="my_bd"
+
 alias ojt='g++ main.cpp && oj t -d ./tests'
