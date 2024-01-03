@@ -115,7 +115,7 @@ style = 'green'
 format = ' took [$duration]($style) '
 
 [ directory ]
-format = '[ $path]($style)[$read_only]($read_only_style) '
+# format = '[ $path]($style)[$read_only]($read_only_style) '
 style = 'blue'
 truncate_to_repo=false
 

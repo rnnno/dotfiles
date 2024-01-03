@@ -16,6 +16,7 @@ alias vim='nvim'
 
 alias bat='bat --style=numbers'
 
+alias sudo='sudo '
 alias :q='exit'
 
 alias ojt='g++ main.cpp && oj t -d ./tests'
