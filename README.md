@@ -8,7 +8,7 @@ git clone https://github.com/rnnno/dotfiles && cd dotfiles && ./install.sh
 ```
 
 # TODO
-- [ ] zshrc setting
+- [x] zshrc setting
 - [ ] nvim plugin manager change from packer.nvim
 - [ ] create install.sh
 
