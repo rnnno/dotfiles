@@ -10,6 +10,7 @@ zstyle ':completion:*:default' menu select=1
 chpwd () { eza --group-directories-first --icons }
 
 
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(starship init zsh)"
 
 

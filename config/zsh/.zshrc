@@ -8,3 +8,4 @@ source $HOME/.config/zsh/rc/option.zsh
 
 source $HOME/.config/zsh/rc/alias.zsh
 
+
