@@ -1,6 +1,8 @@
 # nvim compiled file
 config/nvim/plugin/
 
+config/zsh/.zcompdump
+
 Brewfile.lock.json
 
 
