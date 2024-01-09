@@ -5,6 +5,10 @@ return {
     'antosha417/nvim-lsp-file-operations',
     'echasnovski/mini.base16',
   },
+  lazy = true,
+  keys = {
+    { '<leader>n', ':NvimTreeToggle<CR>' },
+  },
   config = function()
     local width = vim.fn.winwidth(0) - 10
     local height = vim.fn.winheight(0) - 2
@@ -45,6 +49,7 @@ return {
         dotfiles = true,
       },
     })
+
     local keymap = vim.keymap.set
     keymap('n', '<leader>n', ':NvimTreeToggle<CR>')
   end,
