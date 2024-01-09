@@ -1,11 +1,6 @@
-require "plugins"
 
-require "keymaps"
-require "setups"
-require "commands"
+require 'keymaps'
+require 'options'
 
+require 'lazy_nvim'
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = { "plugins.lua" },
-  command = "PackerCompile",
-})

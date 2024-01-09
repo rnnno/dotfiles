@@ -1,5 +1,5 @@
-# nvim compiled file
-config/nvim/plugin/
+
+config/nvim/lazy-lock.json
 
 config/zsh/.zcompdump
 
