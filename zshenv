@@ -9,5 +9,5 @@ export PATH="/usr/local/bin:/usr/bin:/bin"
 
 
 export EDITOR=nvim
-export LANG=ja_JP.UTF-8
+export LANG=en_US.UTF-8
 

@@ -18,6 +18,7 @@ alias bat='bat --style=numbers'
 
 alias sudo='sudo '
 alias :q='exit'
+alias so='source ~/.config/zsh/.zshrc'
 
 function my_bd () {
   if [[ $# -eq 0 ]]; then
