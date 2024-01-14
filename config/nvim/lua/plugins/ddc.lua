@@ -12,7 +12,8 @@ return {
       -- Source
       'Shougo/ddc-source-around',
       'Shougo/ddc-source-lsp',
-      'Shougo/deoppet.nvim',
+      -- 'Shougo/deoppet.nvim',
+      'hrsh7th/vim-vsnip',
       'LumaKernel/ddc-source-file',
       'Shougo/ddc-source-cmdline',
       'Shougo/ddc-source-cmdline-history',
@@ -40,7 +41,7 @@ return {
       patch_global('sources', {
         'skkeleton',
         'lsp',
-        'deoppet',
+        'vsnip',
         'file',
         'around',
       })
@@ -193,19 +194,14 @@ return {
     end,
   },
   {
-    'Shougo/deoppet.nvim',
-    config = function ()
-      fn['deoppet#initialize']()
-      -- vim.cmd[[
-      -- deoppet#custom#option('snippets',
-      -- \ map(globpath(&runtimepath, 'neosnippets', 1, 1),
-      -- \     { _, val -> { 'path': val } }))      
-      -- )]]
-      keymap('i', '<C-k>', '<Plug>(deoppet_expand)')
-      keymap('i', '<C-f>', '<plug>(deoppet_jump_forward)')
-      keymap('i', '<C-b>', '<plug>(deoppet_jump_backward)')
-      keymap('s', '<C-f>', '<plug>(deoppet_jump_forward)')
-      keymap('s', '<C-b>', '<plug>(deoppet_jump_backward)')
-    end
-  }
+    'hrsh7th/vim-vsnip',
+    lazy = false,
+    config = function()
+      vim.g.vsnip_snippet_dir = "~/.config/vsnip"
+      vim.cmd('imap <expr> <C-l> vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<C-l>"')
+      vim.cmd('smap <expr> <C-l> vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<C-l>"')
+      vim.cmd('imap <expr> <C-h> vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<C-h>"')
+      vim.cmd('smap <expr> <C-h> vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<C-h>"')
+    end,
+  },
 }
