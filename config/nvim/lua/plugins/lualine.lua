@@ -2,9 +2,31 @@ return {
   'nvim-lualine/lualine.nvim',
   dependencies = {
     'nvim-tree/nvim-web-devicons',
-    'ryanoasis/vim-devicons'
+    'ryanoasis/vim-devicons',
+    'yasunori0418/statusline_skk.vim'
   },
   config = function()
+    local function convert_skkeleton_mode()
+      local skk_mode = vim.fn['skkeleton#mode']()
+      local mode_mappings = {
+        hira = 'あぁ',
+        kata = 'アァ',
+        hankata = 'ｱｧ',
+        zenkaku = 'Ａａ',
+        abbrev = 'abbrev',
+      }
+      return mode_mappings[skk_mode] or 'Aa'
+    end
+
+    local function skk_mode()
+      local current_mode = vim.fn.mode()
+      if current_mode == 'i' or current_mode == 'c' or current_mode == 't' then
+        return convert_skkeleton_mode()
+      else
+        return ''
+      end
+    end
+
     require('lualine').setup({
       options = {
         icons_enabled = true,
@@ -24,8 +46,9 @@ return {
           winbar = 1000,
         }
       },
+
       sections = {
-        lualine_a = {'mode'},
+        lualine_a = {'mode', skk_mode},
         lualine_b = {'branch', 'diff', 'diagnostics'},
         lualine_c = {'filename'},
         lualine_x = {'encoding', 'fileformat', 'filetype'},
@@ -45,10 +68,12 @@ return {
       inactive_winbar = {},
       extensions = {
         'lazy',
-        'mason'
+        'mason',
       }
 
     })
+
+    vim.g.lightline_skk_announce = true
     end
 
 }

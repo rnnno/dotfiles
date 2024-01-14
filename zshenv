@@ -5,7 +5,7 @@ export DENO_INSTALL="/home/moto/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 # PATH
-export PATH="/usr/local/bin:/usr/bin:/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
 
 
 export EDITOR=nvim
