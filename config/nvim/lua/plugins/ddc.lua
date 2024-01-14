@@ -41,7 +41,7 @@ return {
       patch_global('sources', {
         'skkeleton',
         'lsp',
-        'vsnip',
+        -- 'vsnip',
         'file',
         'around',
       })
@@ -145,7 +145,7 @@ return {
       keymap('i', '<C-e>', '<cmd>call pum#map#cancel()<CR>', opts)
 
 
-      vim.cmd[[
+      vim.cmd [[
       nnoremap :       <Cmd>call CommandlinePre()<CR>:
 
       function! CommandlinePre() abort

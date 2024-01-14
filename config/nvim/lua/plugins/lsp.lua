@@ -12,11 +12,11 @@ return {
       ui = { border = 'single' }
     })
     require('mason-lspconfig').setup()
-    require('mason-lspconfig').setup_handlers ({
-      function (server_name)
+    require('mason-lspconfig').setup_handlers({
+      function(server_name)
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities.textDocument.completion.completionItem.snippetSupport = true
-        require('lspconfig')[server_name].setup{}
+        require('lspconfig')[server_name].setup {}
       end
     })
 
@@ -24,7 +24,7 @@ return {
     keymap('n', 'ge', '<CMD>lua vim.diagnostic.open_float()<CR>')
     keymap('n', 'g]', '<CMD>lua vim.diagnostic.goto_next()<CR>')
     keymap('n', 'g[', '<CMD>lua vim.diagnostic.goto_prev()<CR>')
-    keymap('n', 'K',  '<CMD>lua vim.lsp.buf.hover()<CR>')
+    keymap('n', 'K', '<CMD>lua vim.lsp.buf.hover()<CR>')
     keymap('n', 'gd', '<CMD>lua vim.lsp.buf.definition<CR>')
     keymap('n', 'gD', '<CMD>lua vim.lsp.buf.declartion<CR>')
     keymap('n', 'gt', '<CMD>lua vim.lsp.buf.type_definition<CR>')
