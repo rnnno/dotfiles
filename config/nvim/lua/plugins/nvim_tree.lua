@@ -10,7 +10,7 @@ return {
     { '<leader>n', ':NvimTreeToggle<CR>' },
   },
   config = function()
-    local width = vim.fn.winwidth(0) - 10
+    local width = math.floor(vim.fn.winwidth(0) * 0.8)
     local height = vim.fn.winheight(0) - 2
 
     local row = (vim.fn.winheight(0) - height) / 2
@@ -54,4 +54,3 @@ return {
     keymap('n', '<leader>n', ':NvimTreeToggle<CR>')
   end,
 }
-

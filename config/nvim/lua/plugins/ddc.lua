@@ -4,6 +4,8 @@ local fn = vim.fn
 return {
   {
     'Shougo/ddc.vim',
+    lazy = true,
+    event = 'BufReadPre',
     dependencies = {
       'vim-denops/denops.vim',
       -- UI
@@ -38,6 +40,7 @@ return {
         'CmdlineChanged',
       })
 
+
       patch_global('sources', {
         'skkeleton',
         'lsp',
@@ -49,7 +52,7 @@ return {
       patch_global('cmdlineSources', {
         [':'] = {
           'cmdline',
-          'cmdline-history',
+          -- 'cmdline-history',
           'around',
         },
         ['/'] = {
@@ -170,7 +173,6 @@ return {
         silent! cunmap <C-e>
       endfunction
       ]]
-
 
       -- Commandline
       -- keymap('c', '<Tab>', '<Cmd>call pum#map#select_relative(+1)<CR>', { noremap = true })

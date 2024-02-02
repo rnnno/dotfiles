@@ -1,5 +1,7 @@
 return {
   'vim-skk/skkeleton',
+  lazy = true,
+  event = 'BufReadPre',
   dependencies = {
     'vim-denops/denops.vim',
   },
@@ -17,6 +19,7 @@ return {
       eggLikeNewline = true,
       registerConvertResult = true,
       globalDictionaries = dictionaries,
+      keepState = true,
     })
 
     vim.fn['skkeleton#register_kanatable'](

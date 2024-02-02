@@ -4,8 +4,8 @@ return {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
   },
-  -- lazy = true,
-  -- event = 'BufReadPre',
+  lazy = true,
+  event = 'BufReadPre',
   config = function()
     require('lspconfig.ui.windows').default_options.border = 'single'
     require('mason').setup({

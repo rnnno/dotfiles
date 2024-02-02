@@ -1,3 +1,3 @@
 return {
-  'lambdalisue/seethrough.vim'
+  -- 'lambdalisue/seethrough.vim'
 }

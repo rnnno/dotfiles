@@ -2,6 +2,8 @@
 ## NEOVIM
 - neovim
 - deno
+- skk-jisyo
+
 
 ## Zsh
 - zsh
@@ -11,6 +13,7 @@
 ## その他
 - git
 - curl
+- npm
 - eza
 - bat
 

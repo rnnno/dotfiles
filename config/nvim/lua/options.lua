@@ -1,4 +1,3 @@
-
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.scriptencoding = 'utf-8'
@@ -30,8 +29,10 @@ vim.opt.helplang = 'ja', 'en'
 vim.opt.updatetime = 300
 vim.opt.showtabline = 2
 vim.opt.clipboard = 'unnamedplus'
-vim.opt.termguicolors = true
 vim.opt.signcolumn = 'yes'
 vim.opt.hidden = true
 vim.opt.swapfile = false
 vim.opt.wrap = true
+vim.opt.termguicolors = true
+vim.opt.winblend = 0
+vim.opt.pumblend = 0

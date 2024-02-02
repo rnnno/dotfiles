@@ -32,5 +32,3 @@ keymap('t', 'jj', '<C-\\><C-n>')
 -- keymap('i', 'll', '<Right>')
 
 keymap('n', '<F1>', ':edit $MYVIMRC<CR>')
-
-
