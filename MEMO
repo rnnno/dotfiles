@@ -1,0 +1,20 @@
+# 必要な物
+## NEOVIM
+- neovim
+- deno
+- skk-jisyo
+
+
+## Zsh
+- zsh
+- zinit
+- starship
+
+## その他
+- git
+- curl
+- npm
+- eza
+- bat
+
+

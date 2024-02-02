@@ -18,6 +18,7 @@ alias bat='bat --style=numbers'
 
 alias sudo='sudo '
 alias :q='exit'
+alias so='source ~/.config/zsh/.zshrc'
 alias dotfiles='cd ~/dotfiles'
 
 function my_bd () {
