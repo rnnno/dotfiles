@@ -1,4 +1,4 @@
-require 'keymaps'
-require 'options'
+require 'core.keymaps'
+require 'core.options'
 
-require 'lazy_nvim'
+require 'core.lazy'

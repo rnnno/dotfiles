@@ -1,11 +1,11 @@
 
-source $HOME/.config/zsh/basic.zsh
+source $HOME/.config/zsh/conf.d/basic.zsh
 
 
-source $HOME/.config/zsh/rc/plugins.zsh
+source $HOME/.config/zsh/conf.d/plugins.zsh
 
-source $HOME/.config/zsh/rc/option.zsh
+source $HOME/.config/zsh/conf.d/option.zsh
 
-source $HOME/.config/zsh/rc/alias.zsh
+source $HOME/.config/zsh/conf.d/alias.zsh
 
 
