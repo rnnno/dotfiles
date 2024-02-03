@@ -97,6 +97,7 @@ symbol = '─'
 
 [ memory_usage ]
 threshold = 0
+style = 'bold white'
 format = 'via $symbol[$ram_pct]($style) '
 disabled = false
 
