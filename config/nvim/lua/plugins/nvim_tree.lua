@@ -9,6 +9,9 @@ return {
   keys = {
     { '<leader>n', ':NvimTreeToggle<CR>' },
   },
+  cmd = {
+    'NvimTreeToggle',
+  },
   config = function()
     local width = math.floor(vim.fn.winwidth(0) * 0.8)
     local height = vim.fn.winheight(0) - 2

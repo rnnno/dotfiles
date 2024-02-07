@@ -19,7 +19,7 @@ return {
       eggLikeNewline = true,
       registerConvertResult = true,
       globalDictionaries = dictionaries,
-      -- keepState = true,
+      keepState = true,
     })
 
     if vim.fn.expand('%:e') == 'txt' or vim.fn.expand('%:e') == 'md' then

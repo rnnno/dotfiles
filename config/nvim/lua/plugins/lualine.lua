@@ -5,7 +5,6 @@ return {
   dependencies = {
     'nvim-tree/nvim-web-devicons',
     'ryanoasis/vim-devicons',
-    'yasunori0418/statusline_skk.vim'
   },
   config = function()
     local function convert_skkeleton_mode()
@@ -75,7 +74,6 @@ return {
 
     })
 
-    vim.g.lightline_skk_announce = true
   end
 
 }

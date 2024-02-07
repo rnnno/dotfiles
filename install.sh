@@ -9,7 +9,7 @@
 #    echo "Homebrew is already installed."
 #  fi
 #
-  # TODO: やる
+#  TODO: やる
 #  brew bundle install --file=brewfile
   
 #}

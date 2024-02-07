@@ -53,7 +53,7 @@ return {
         [':'] = {
           'cmdline',
           -- 'cmdline-history',
-          'around',
+          -- 'around',
         },
         ['/'] = {
           'around',
@@ -130,6 +130,8 @@ return {
   },
   {
     'Shougo/pum.vim',
+    lazy = true,
+    event = 'BufReadPre',
     config = function()
       fn['pum#set_option']({
         auto_select = true,
@@ -140,12 +142,10 @@ return {
         highlight_normal_menu = 'Normal',
       })
 
-      -- Insert
-      local opts = { silent = true, noremap = true }
-      keymap('i', '<C-n>', '<cmd>call pum#map#select_relative(+1)<CR>', opts)
-      keymap('i', '<C-p>', '<cmd>call pum#map#select_relative(-1)<CR>', opts)
-      keymap('i', '<C-y>', '<cmd>call pum#map#confirm()<CR>', opts)
-      keymap('i', '<C-e>', '<cmd>call pum#map#cancel()<CR>', opts)
+      keymap('i', '<C-n>', '<cmd>call pum#map#select_relative(+1)<CR>')
+      keymap('i', '<C-p>', '<cmd>call pum#map#select_relative(-1)<CR>')
+      keymap('i', '<C-y>', '<cmd>call pum#map#confirm()<CR>')
+      keymap('i', '<C-e>', '<cmd>call pum#map#cancel()<CR>')
 
 
       vim.cmd [[
@@ -186,6 +186,8 @@ return {
   {
     'matsui54/denops-signature_help',
     dependencies = { 'vim-denops/denops.vim' },
+    lazy = true,
+    event = 'BufReadPre',
     config = function()
       vim.g.signature_help_config = {
         contentsStyle = 'full',
