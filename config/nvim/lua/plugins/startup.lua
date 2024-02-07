@@ -28,8 +28,8 @@ return {
       " ⠀⠀⠀⠀⠙⢦⡀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣿⣿⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀ ",
       " ⠀⠀⠀⠀⠀⠀⠙⢦⡀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀ ",
       " ⠀⠀⠀⠀⠀⠀⠀⠀⠙⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀ ",
-
     }
+    dashboard.section.header.opts.hl = "String"
 
     dashboard.section.buttons.val = {
       dashboard.button("n", "  NvimTree", ":NvimTreeToggle<CR>"),

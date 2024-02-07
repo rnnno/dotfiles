@@ -199,7 +199,8 @@ return {
   },
   {
     'hrsh7th/vim-vsnip',
-    lazy = false,
+    lazy = true,
+    event = 'BufReadPre',
     config = function()
       vim.g.vsnip_snippet_dir = "~/.config/vsnip"
       vim.cmd('imap <expr> <C-l> vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<C-l>"')
