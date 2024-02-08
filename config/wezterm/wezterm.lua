@@ -9,7 +9,7 @@ return {
   line_height = 1.0,
   color_scheme = "iceberg-dark",
   font = wezterm.font_with_fallback({
-    {family="FiraCodeNerdFont", harfbuzz_features = { "cv01", "cv02", "cv06", "cv23", "cv24", "cv25", "cv26", "cv29", "cv32", "ss02", "ss03", "ss05", "ss09", "ss07" }, weight="Medium"},
+    { family = "FiraCodeNerdFont", harfbuzz_features = { "cv01", "cv02", "cv06", "cv23", "cv24", "cv25", "cv26", "cv29", "cv32", "ss02", "ss03", "ss05", "ss09", "ss07" }, weight = "Medium" },
   }),
   use_fancy_tab_bar = true,
   hide_tab_bar_if_only_one_tab = true,
@@ -21,7 +21,7 @@ return {
   --   hue = 1.0,
   --   saturation = 0.1,
   -- },
-  skip_close_confirmation_for_processes_named = {""},
+  skip_close_confirmation_for_processes_named = { "" },
   window_padding = {
     left = 0,
     right = 0,
@@ -30,7 +30,7 @@ return {
   },
   wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
     return {
-      {Text=" " .. tab.active_pane.title .. " "},
+      { Text = " " .. tab.active_pane.title .. " " },
     }
   end),
   colors = {
@@ -77,30 +77,28 @@ return {
       },
     }
   },
-  leader = { key="m", mods="CTRL", timeout_milliseconds=1500 },
+  leader = { key = "m", mods = "CTRL", timeout_milliseconds = 1500 },
   keys = {
-      { key = "t", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
-      { key = "d", mods = "LEADER", action = act.CloseCurrentTab{ confirm = true } },
-      { key = "w", mods = "LEADER", action = act.ShowTabNavigator },
+    { key = "t",     mods = "LEADER",     action = act.SpawnTab("CurrentPaneDomain") },
+    { key = "d",     mods = "LEADER",     action = act.CloseCurrentTab { confirm = true } },
+    { key = "w",     mods = "LEADER",     action = act.ShowTabNavigator },
 
-	  
-      { key = "v", mods = "LEADER", action = act.SplitHorizontal{ domain = "CurrentPaneDomain" } },
-      { key = "s", mods = "LEADER", action = act.SplitVertical{ domain = "CurrentPaneDomain" } },
-      { key = "x", mods = "LEADER", action = act.CloseCurrentPane{ confirm = true } },
+    { key = "v",     mods = "LEADER",     action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
+    { key = "s",     mods = "LEADER",     action = act.SplitVertical { domain = "CurrentPaneDomain" } },
+    { key = "x",     mods = "LEADER",     action = act.CloseCurrentPane { confirm = true } },
 
-      { key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
-      { key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
-      { key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
-      { key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
-      { key = "H", mods = "LEADER", action = act.AdjustPaneSize{"Left", 10} },
-      { key = "L", mods = "LEADER", action = act.AdjustPaneSize{"Right", 10} },
-      { key = "K", mods = "LEADER", action = act.AdjustPaneSize{"Up", 5} },
-      { key = "J", mods = "LEADER", action = act.AdjustPaneSize{"Down", 5} },
+    { key = "h",     mods = "LEADER",     action = act.ActivatePaneDirection("Left") },
+    { key = "l",     mods = "LEADER",     action = act.ActivatePaneDirection("Right") },
+    { key = "k",     mods = "LEADER",     action = act.ActivatePaneDirection("Up") },
+    { key = "j",     mods = "LEADER",     action = act.ActivatePaneDirection("Down") },
+    { key = "H",     mods = "LEADER",     action = act.AdjustPaneSize { "Left", 10 } },
+    { key = "L",     mods = "LEADER",     action = act.AdjustPaneSize { "Right", 10 } },
+    { key = "K",     mods = "LEADER",     action = act.AdjustPaneSize { "Up", 5 } },
+    { key = "J",     mods = "LEADER",     action = act.AdjustPaneSize { "Down", 5 } },
 
-      { key = "x", mods = "CTRL|SHIFT", action = act.ActivateCopyMode },
-      { key = "v", mods = "CTRL|SHIFT", action = act.PasteFrom("Clipboard") },
+    { key = "x",     mods = "CTRL|SHIFT", action = act.ActivateCopyMode },
+    { key = "v",     mods = "CTRL|SHIFT", action = act.PasteFrom("Clipboard") },
 
-      { key = "Enter", mods = "ALT", action = 'DisableDefaultAssignment' },
+    { key = "Enter", mods = "ALT",        action = 'DisableDefaultAssignment' },
   },
 }
-
