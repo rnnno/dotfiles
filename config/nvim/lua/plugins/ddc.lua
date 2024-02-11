@@ -18,7 +18,7 @@ return {
       'hrsh7th/vim-vsnip',
       'LumaKernel/ddc-source-file',
       'Shougo/ddc-source-cmdline',
-      'Shougo/ddc-source-cmdline-history',
+      -- 'Shougo/ddc-source-cmdline-history',
       -- Filter
       'Shougo/ddc-filter-matcher_head',
       'Shougo/ddc-filter-sorter_rank',

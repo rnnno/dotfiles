@@ -11,9 +11,14 @@ return {
     keymap('c', '<C-j>', '<Plug>(skkeleton-toggle)')
     keymap('t', '<C-j>', '<plug>(skkeleton-toggle)')
 
-    local dictionaries = {
-      '~/.skk/SKK-JISYO.L'
-    }
+    local dictionaries = {}
+    local handle = io.popen("ls $HOME/.skk/*")   -- フルバスで取得
+    if handle then
+      for file in handle:lines() do
+        table.insert(dictionaries, file)
+      end
+      handle:close()
+    end
 
     vim.fn['skkeleton#config']({
       eggLikeNewline = true,
@@ -34,7 +39,6 @@ return {
         jj = 'escape',
       }
     )
-
   end,
 
 }

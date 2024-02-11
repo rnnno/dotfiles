@@ -3,6 +3,8 @@ config/nvim/lazy-lock.json
 
 config/zsh/.zcompdump
 
+config/neofetch
+
 Brewfile.lock.json
 
 
