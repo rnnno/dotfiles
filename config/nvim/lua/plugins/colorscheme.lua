@@ -14,6 +14,8 @@ return {
 
     vim.cmd [[ highlight NormalNC guibg=NONE ]]
     vim.cmd [[ highlight LineNr guifg=#87cefa ]]
+    vim.cmd [[ highlight Comment guifg=#a9a9a9]]
+
 
 
     -- vim.cmd[[colorscheme habamax]]
