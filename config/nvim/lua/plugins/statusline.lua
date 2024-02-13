@@ -32,11 +32,12 @@ return {
         right = { 'file_name', 'line_column' }
       },
       mode_colors = {
-        i = "#d4be98",
         n = "#84a598",
-        c = "#8fbf7f",
-        -- t = "#8fbf7f",
-        -- v = "#fc802d",
+        nt = "#84a598",
+
+        i = "#d4be98",
+
+        c = "#ff7f50",
       },
       defaults = {
         true_colors = true,
@@ -46,7 +47,6 @@ return {
         NvimTree = { 'NvimTree', ' ' },
         lazy = { 'Lazy', '󱒋 ' }, -- etc
       },
-
     }
   end
 }
