@@ -1,5 +1,4 @@
 
-
 HISTFILE=$HOME/.zsh-history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -11,18 +10,8 @@ zstyle ':completion:*:default' menu select=1
 
 chpwd () { eza --group-directories-first --icons }
 
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(starship init zsh)"
+eval "$(sheldon source)"
 
-
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
 

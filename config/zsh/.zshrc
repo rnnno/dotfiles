@@ -2,7 +2,7 @@
 source $ZDOTDIR/conf.d/basic.zsh
 
 
-source $ZDOTDIR/conf.d/plugins.zsh
+# source $ZDOTDIR/conf.d/plugins.zsh
 
 source $ZDOTDIR/conf.d/option.zsh
 

@@ -13,7 +13,8 @@ export PATH="$DOTNET_ROOT/.dotnet:$PATH"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
-# PATH
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+
 export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
 
 
