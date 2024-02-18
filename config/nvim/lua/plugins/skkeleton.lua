@@ -12,7 +12,7 @@ return {
     keymap('t', '<C-j>', '<plug>(skkeleton-toggle)')
 
     local dictionaries = {}
-    local handle = io.popen("ls $HOME/.skk/*")   -- フルバスで取得
+    local handle = io.popen("ls $HOME/.skk/*")
     if handle then
       for file in handle:lines() do
         table.insert(dictionaries, file)
@@ -27,11 +27,30 @@ return {
       keepState = true,
     })
 
-    if vim.fn.expand('%:e') == 'txt' or vim.fn.expand('%:e') == 'md' then
-      vim.fn['skkeleton#config']({ keepState = true })
-    else
-      vim.fn['skkeleton#config']({ keepState = false })
-    end
+    -- if vim.fn.expand('%:e') == 'txt' or vim.fn.expand('%:e') == 'md' then
+    --   vim.fn['skkeleton#config']({ keepState = true })
+    -- else
+    --   vim.fn['skkeleton#config']({ keepState = false })
+    -- end
+
+    local augroup = vim.api.nvim_create_augroup
+    local autocmd = vim.api.nvim_create_autocmd
+
+    augroup('skkeletonKeepState', { clear = true })
+    autocmd('BufEnter', {
+      group = 'skkeletonKeepState',
+      pattern = '*',
+      callback = function()
+        vim.fn['skkeleton#config']({ keepState = false })
+      end
+    })
+    autocmd('BufEnter', {
+      group = 'skkeletonKeepState',
+      pattern = { '*.txt', '*.md' },
+      callback = function()
+        vim.fn['skkeleton#config']({ keepState = true })
+      end
+    })
 
     vim.fn['skkeleton#register_kanatable'](
       'rom',
