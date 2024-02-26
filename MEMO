@@ -7,8 +7,9 @@
 
 ## Zsh
 - zsh
-- zinit
+- sheldon
 - starship
+- thefuck
 
 ## その他
 - git
