@@ -5,6 +5,8 @@ config/zsh/.zcompdump
 
 config/neofetch
 
+config/thefuck/__pycache__
+
 Brewfile.lock.json
 
 
