@@ -10,7 +10,6 @@ keymap('n', '<leader>w', ':w<CR>')
 keymap('n', 'j', 'gj')
 keymap('n', 'k', 'gk')
 
-
 keymap("n", "<M-j>", "<Cmd>move .+1<CR>==")
 keymap("x", "<M-j>", ":move '>+1<CR>gv=gv")
 keymap("n", "<M-k>", "<Cmd>move .-2<CR>==")

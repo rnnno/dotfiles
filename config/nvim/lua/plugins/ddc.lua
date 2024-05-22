@@ -173,14 +173,6 @@ return {
         silent! cunmap <C-e>
       endfunction
       ]]
-
-      -- Commandline
-      -- keymap('c', '<Tab>', '<Cmd>call pum#map#select_relative(+1)<CR>', { noremap = true })
-      -- keymap('c', '<S-Tab>', '<Cmd>call pum#map#select_relative(-1)<CR>', { noremap = true })
-      -- keymap('c', '<C-n>', '<cmd>call pum#map#select_relative(+1)<CR>', { noremap = true })
-      -- keymap('c', '<C-p>', '<cmd>call pum#map#select_relative(-1)<CR>', { noremap = true })
-      -- keymap('c', '<C-y>', '<cmd>call pum#map#confirm()<CR>', { noremap = true })
-      -- keymap('c', '<C-e>', '<cmd>call pum#map#cancel()<CR>', { noremap = true })
     end,
   },
   {
