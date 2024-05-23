@@ -24,11 +24,10 @@ return {
   lazy = true,
   event = 'BufReadPre',
   config = function()
-
     require "staline".setup {
       sections = {
         left = { '  ', 'mode', ' ', { 'Staline', skk_mode }, ' ', 'branch', ' ', },
-        mid = { 'lsp' },
+        mid = { 'lsp_name', ' ', 'lsp' },
         right = { 'file_name', 'line_column' }
       },
       mode_colors = {
