@@ -27,14 +27,16 @@ return {
     require "staline".setup {
       sections = {
         left = { '  ', 'mode', ' ', { 'Staline', skk_mode }, ' ', 'branch', ' ', },
-        mid = { 'lsp_name', ' ', 'lsp' },
+        mid = { 'lsp' },
         right = { 'file_name', 'line_column' }
       },
       mode_colors = {
-        n = "#84a598",
-        nt = "#84a598",
+        n = "#90ee90",
+        nt = "#90ee90",
 
-        i = "#d4be98",
+        t = "#f48d93",
+
+        i = "#87cefa",
 
         c = "#ff7f50",
       },

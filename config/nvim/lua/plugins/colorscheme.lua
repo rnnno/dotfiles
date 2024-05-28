@@ -13,7 +13,7 @@ return {
     vim.cmd [[ highlight StatusLineNC guibg=NONE ctermbg=NONE ]]
 
     vim.cmd [[ highlight NormalNC guibg=NONE ]]
-    vim.cmd [[ highlight LineNr guifg=#87cefa ]]
+    vim.cmd [[ highlight LineNr guifg=#fffacd ]]
     vim.cmd [[ highlight Comment guifg=#a9a9a9]]
 
 
