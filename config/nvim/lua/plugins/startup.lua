@@ -55,12 +55,10 @@ return {
     }
 
     dashboard.section.buttons.val = {
-      dashboard.button("n", "  NvimTree", ":NvimTreeToggle<CR>"),
+      dashboard.button("f", "󰥨  Find file", "<CMD>Telescope file_browser<CR>"),
+      dashboard.button("g", "󰱼  Find text", "<CMD>Telescope live_grep<CR>"),
+      dashboard.button("r", "  Recent file", "<CMD>Telescope oldfiles<CR>"),
       dashboard.button("u", "󰊳  Update", ":Lazy sync<CR>"),
-      -- TODO:Telescope入れるか検討する
-      -- dashboard.button("r", "  Recent file", ":Telescope oldfiles <CR>"),
-      -- dashboard.button("f", "󰥨  Find file", ":Telescope find_files <CR>"),
-      -- dashboard.button("g", "󰱼  Find text", ":Telescope live_grep <CR>"),
       dashboard.button("c", "  Config", ":e $MYVIMRC | :cd %:p:h | :silent !pwd <CR>"),
       dashboard.button("q", "  Quit", ":qa<CR>"),
     }

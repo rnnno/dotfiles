@@ -45,7 +45,6 @@ return {
         line_column = " [%l/%L] :%c  ",
       },
       special_table = {
-        NvimTree = { 'NvimTree', ' ' },
         lazy = { 'Lazy', '󱒋 ' }, -- etc
       },
     }
