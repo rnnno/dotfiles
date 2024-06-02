@@ -1,6 +1,6 @@
 return {
   'kylechui/nvim-surround',
   lazy = true,
-  event = 'BufReadPre',
+  keys = { "ds", "cs", "ys" },
   opts = {},
 }

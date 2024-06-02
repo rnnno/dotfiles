@@ -1,6 +1,6 @@
 return {
   'numToStr/Comment.nvim',
   lazy = true,
-  event = 'BufReadPre',
+  keys = { 'gc', 'gb' },
   opts = {},
 }
