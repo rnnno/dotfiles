@@ -45,7 +45,7 @@ return {
         line_column = " [%l/%L] :%c  ",
       },
       special_table = {
-        lazy = { 'Lazy', '󱒋 ' }, -- etc
+        lazy = { 'Lazy', '󱒋 ' },
       },
     }
   end

@@ -58,9 +58,9 @@ return {
       dashboard.button("f", "󰥨  Find file", "<CMD>Telescope file_browser<CR>"),
       dashboard.button("g", "󰱼  Find text", "<CMD>Telescope live_grep<CR>"),
       dashboard.button("r", "  Recent file", "<CMD>Telescope oldfiles<CR>"),
-      dashboard.button("u", "󰊳  Update", ":Lazy sync<CR>"),
-      dashboard.button("c", "  Config", ":e $MYVIMRC | :cd %:p:h | :silent !pwd <CR>"),
-      dashboard.button("q", "  Quit", ":qa<CR>"),
+      dashboard.button("u", "󰊳  Update", "<CMD>Lazy sync<CR>"),
+      dashboard.button("c", "  Config", "<CMD>e $MYVIMRC | :cd %:p:h | :silent !pwd <CR>"),
+      dashboard.button("q", "  Quit", "<CMD>qa<CR>"),
     }
 
 

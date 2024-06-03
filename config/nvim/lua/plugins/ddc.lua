@@ -14,11 +14,9 @@ return {
       -- Source
       'Shougo/ddc-source-around',
       'Shougo/ddc-source-lsp',
-      -- 'Shougo/deoppet.nvim',
       'hrsh7th/vim-vsnip',
       'LumaKernel/ddc-source-file',
       'Shougo/ddc-source-cmdline',
-      -- 'Shougo/ddc-source-cmdline-history',
       -- Filter
       'Shougo/ddc-filter-matcher_head',
       'Shougo/ddc-filter-sorter_rank',
@@ -52,8 +50,6 @@ return {
       patch_global('cmdlineSources', {
         [':'] = {
           'cmdline',
-          -- 'cmdline-history',
-          -- 'around',
         },
         ['/'] = {
           'around',
@@ -66,11 +62,9 @@ return {
       patch_global('sourceOptions', {
         _ = {
           matchers = {
-            -- 'matcher_head',
             'matcher_fuzzy',
           },
           sorters = {
-            -- 'sorter_rank',
             'sorter_fuzzy',
           },
           converters = { 'converter_truncate_abbr', 'converter_fuzzy', 'converter_remove_overlap' },

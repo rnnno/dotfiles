@@ -27,12 +27,6 @@ return {
       keepState = true,
     })
 
-    -- if vim.fn.expand('%:e') == 'txt' or vim.fn.expand('%:e') == 'md' then
-    --   vim.fn['skkeleton#config']({ keepState = true })
-    -- else
-    --   vim.fn['skkeleton#config']({ keepState = false })
-    -- end
-
     local augroup = vim.api.nvim_create_augroup
     local autocmd = vim.api.nvim_create_autocmd
 
