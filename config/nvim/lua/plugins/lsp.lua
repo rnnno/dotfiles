@@ -12,7 +12,13 @@ return {
     require('mason').setup({
       ui = { border = 'single' }
     })
-    require('mason-lspconfig').setup()
+    require('mason-lspconfig').setup({
+      ensure_installed = {
+        "lua_ls", "tsserver", "eslint", "denols", "jsonls", "clangd", "rust_analyzer", "taplo", "autotools_ls",
+        "fsautocomplete"
+      },
+      automatic_installation = true
+    })
     require('mason-lspconfig').setup_handlers({
       function(server_name)
         local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -20,7 +26,6 @@ return {
 
         local root = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", "package.json")(vim.fn.getcwd()) or
             (vim.fn.getcwd())
-        -- local root = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc","package.json")
         local is_deno_root = vim.fn.glob(root .. '/deno.json') ~= '' or vim.fn.glob(root .. '/deno.jsonc') ~= ''
         local is_node_root = vim.fn.glob(root .. '/package.json') ~= ''
 
