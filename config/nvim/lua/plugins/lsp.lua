@@ -7,6 +7,7 @@ return {
   lazy = true,
   event = 'BufEnter',
   config = function()
+    local nvim_lsp = require('lspconfig')
     require('lspconfig.ui.windows').default_options.border = 'single'
     require('mason').setup({
       ui = { border = 'single' }
@@ -16,30 +17,75 @@ return {
       function(server_name)
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities.textDocument.completion.completionItem.snippetSupport = true
-        require('lspconfig')[server_name].setup {}
+
+        local root = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", "package.json")(vim.fn.getcwd()) or
+            (vim.fn.getcwd())
+        -- local root = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc","package.json")
+        local is_deno_root = vim.fn.glob(root .. '/deno.json') ~= '' or vim.fn.glob(root .. '/deno.jsonc') ~= ''
+        local is_node_root = vim.fn.glob(root .. '/package.json') ~= ''
+
+        local opts = {}
+
+        if server_name == "lua_ls" then
+          opts.settings = {
+            Lua = {
+              runtime = {
+                version = "LuaJIT",
+                pathStrict = true,
+                path = { "?.lua", "?/init.lua" },
+              },
+              workspace = {
+                library = vim.list_extend(vim.api.nvim_get_runtime_file("lua", true), {
+                  "${3rd}/luv/library",
+                  "${3rd}/busted/library",
+                  "${3rd}/luassert/library",
+                }),
+                checkThirdParty = "Disable",
+              },
+            },
+          }
+        end
+
+        if server_name == "denols" then
+          if not is_deno_root then
+            return
+          end
+
+          opts.root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc")
+          opts.init_options = {
+            lint = true,
+            unstable = true,
+            suggest = {
+              imports = {
+                hosts = {
+                  ["https://deno.land"] = true,
+                  ["https://cdn.nest.land"] = true,
+                  ["https://crux.land"] = true
+                }
+              }
+            }
+          }
+        end
+
+        if server_name == "tsserver" then
+          if not is_node_root then
+            return
+          end
+
+          opts.root_dir = nvim_lsp.util.root_pattern("package.json")
+        end
+
+        if server_name == "eslint" then
+          if not is_node_root then
+            return
+          end
+
+          opts.root_dir = nvim_lsp.util.root_pattern("package.json")
+        end
+
+        require('lspconfig')[server_name].setup(opts)
       end
     })
-
-    require('lspconfig').lua_ls.setup({
-      settings = {
-        Lua = {
-          runtime = {
-            version = "LuaJIT",
-            pathStrict = true,
-            path = { "?.lua", "?/init.lua" },
-          },
-          workspace = {
-            library = vim.list_extend(vim.api.nvim_get_runtime_file("lua", true), {
-              "${3rd}/luv/library",
-              "${3rd}/busted/library",
-              "${3rd}/luassert/library",
-            }),
-            checkThirdParty = "Disable",
-          },
-        },
-      },
-    })
-
 
     local keymap = vim.keymap.set
     keymap('n', 'ge', '<CMD>lua vim.diagnostic.open_float()<CR>')
