@@ -5,6 +5,7 @@ BACKUP="$HOME/.backup"
 
 dotfiles=(
   zshenv
+  editorconfig
   config
 )
 

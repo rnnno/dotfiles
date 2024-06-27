@@ -5,7 +5,8 @@ return {
     'williamboman/mason-lspconfig.nvim',
   },
   lazy = true,
-  event = 'BufEnter',
+  -- event = 'BufEnter',
+  event = 'VimEnter',
   config = function()
     local nvim_lsp = require('lspconfig')
     require('lspconfig.ui.windows').default_options.border = 'single'
