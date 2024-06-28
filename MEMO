@@ -2,6 +2,7 @@
 ## NEOVIM
 - neovim
 - deno
+- ripgrep
 - skk-jisyo
 
 
@@ -15,7 +16,4 @@
 - git
 - curl
 - npm
-
-## 悩み中
-ー homebrew(linuxbrew)
 

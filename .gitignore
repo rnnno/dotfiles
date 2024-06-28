@@ -1,16 +1,26 @@
+config/*
 
+!config/nvim
 config/nvim/lazy-lock.json
 
+
+!config/zsh
 config/zsh/.zcompdump
-
-config/neofetch
-
+!config/starship
+!config/sheldon
+!config/thefuck
 config/thefuck/__pycache__
 
+!config/hypr
+!config/waybar
+!config/swaylock
+!config/wofi
+!config/mako
+!config/fcitx
+!config/fcitx5
+
+!config/wezterm
+
+!config/gh
 config/gh/hosts.yml
-
-Brewfile.lock.json
-
-
-
 

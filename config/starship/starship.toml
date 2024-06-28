@@ -97,7 +97,7 @@ symbol = '─'
 threshold = 0
 style = 'bold white'
 format = 'via $symbol[$ram_pct]($style) '
-disabled = false
+# disabled = false
 
 [ time ]
 time_format = '%T'
@@ -107,7 +107,7 @@ disabled = false
 format = '[$symbol$percentage]($style)'
 
 [[ battery.display ]]
-threshold = 100
+# threshold = 100
 style = 'green'
 
 [ cmd_duration ]

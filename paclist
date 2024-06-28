@@ -31,7 +31,8 @@ jq
 
 hyprland
 waybar
-rofi-lbonn-wayland
+rofi
+wofi
 mako
 wezterm
 thunar
@@ -39,10 +40,11 @@ grim
 slurp
 hyprpaper
 pavucontrol
+swayidle
 swaylock
 
 networkmanager
-nm-applet
+network-manager-applet
 
 pipewire
 pipewire-alsa
