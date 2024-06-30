@@ -26,10 +26,13 @@ eza
 bat
 dust
 fastfetch
+tokei
 jq
 
 
 hyprland
+sway
+swaybg
 waybar
 rofi
 wofi
@@ -38,6 +41,7 @@ wezterm
 thunar
 grim
 slurp
+swappy
 hyprpaper
 pavucontrol
 swayidle
@@ -51,6 +55,11 @@ pipewire-alsa
 pipewire-pulse
 pipewire-jack
 wireplumber
+
+sddm
+qt5-graphicaleffects
+qt5-quickcontrols2
+qt5-svg
 
 
 fcitx5

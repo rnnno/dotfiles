@@ -2,6 +2,7 @@ local wezterm = require 'wezterm';
 local act = wezterm.action
 
 return {
+  enable_wayland = false,
   initial_cols = 100,
   initial_rows = 40,
   font_size = 12.0,
@@ -77,7 +78,11 @@ return {
       },
     }
   },
-  leader = { key = "m", mods = "CTRL", timeout_milliseconds = 1500 },
+  leader = {
+    key = "m",
+    mods = "CTRL",
+    timeout_milliseconds = 1500,
+  },
   keys = {
     { key = "t",     mods = "LEADER",     action = act.SpawnTab("CurrentPaneDomain") },
     { key = "d",     mods = "LEADER",     action = act.CloseCurrentTab { confirm = true } },

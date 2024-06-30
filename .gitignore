@@ -12,6 +12,7 @@ config/zsh/.zcompdump
 config/thefuck/__pycache__
 
 !config/hypr
+!config/sway
 !config/waybar
 !config/swaylock
 !config/wofi
@@ -20,6 +21,8 @@ config/thefuck/__pycache__
 !config/fcitx5
 
 !config/wezterm
+!config/kitty
+!config/alacritty
 
 !config/gh
 config/gh/hosts.yml

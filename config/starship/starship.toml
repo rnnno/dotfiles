@@ -101,7 +101,7 @@ format = 'via $symbol[$ram_pct]($style) '
 
 [ time ]
 time_format = '%T'
-disabled = false
+# disabled = false
 
 [ battery ]
 format = '[$symbol$percentage]($style)'

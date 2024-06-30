@@ -1,0 +1,138 @@
+# xwayland 設定
+xwayland enable
+
+# モニター設定
+output eDP-1 scale 1.5
+
+# 入力メソッドの設定
+set $XMODIFIERS "@im=fcitx5"
+set $GTK_IM_MODULE "fcitx5"
+set $QT_IM_MODULE "fcitx5"
+set $SDL_IM_MODULE "fcitx5"
+set $GLFW_IM_MODULE "fcitx5"
+
+set $QT_QPA_PLATFORM "wayland"
+set $GDK_BACKEND "wayland,x11"
+set $SDL_VIDEODRIVER "wayland"
+set $CLUTTER_BACKEND "wayland"
+set $XDG_CURRENT_DESKTOP "sway"
+set $XDG_SESSION_TYPE "wayland"
+set $XDG_SESSION_DESKTOP "sway"
+set $MOZ_ENABLE_WAYLAND "1"
+
+# 起動時に実行するプログラム
+exec mako &
+exec fcitx5 -d &
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec udiskie &
+exec blueman-applet &
+exec nm-applet &
+exec pavucontrol &
+exec xdg-desktop-portal-wlr &
+exec wl-paste --type text --watch cliphist store &
+exec wl-paste --type image --watch cliphist store &
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+# アイドル時の動作
+exec swayidle -w timeout 300 'swaylock' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+
+# 入力デバイスの設定
+input "type:touchpad" {
+    natural_scroll false
+    scroll_factor 0.15
+    tap enabled
+}
+
+input * {
+  xkb_layout "jp"
+  xkb_model "jp106"
+  xkb_options "grp:win_space_toggle"
+}
+
+output * bg /home/rnnno/dotfiles/pictures/wallpaper.png fill
+
+bar {
+  swaybar_command waybar
+}
+
+# 外観の設定
+gaps inner 5
+gaps outer 20
+
+# カラーテーマ
+set $bg #2E3440
+set $fg #D8DEE9
+set $primary #88C0D0
+set $secondary #5E81AC
+set $alert #BF616A
+
+# ウィンドウの色設定
+client.focused          $primary   $primary   $fg  $primary   $primary
+client.focused_inactive $secondary $secondary $fg  $secondary $secondary
+client.unfocused        $bg        $bg        $fg  $bg        $bg
+client.urgent           $alert     $alert     $fg  $alert     $alert
+
+# ボーダーの設定
+default_border pixel 2
+default_floating_border pixel 2
+hide_edge_borders smart
+
+# キーバインドの設定
+set $mod Mod4
+
+bindsym $mod+T exec kitty
+bindsym $mod+Q kill
+bindsym $mod+E exec thunar
+bindsym $mod+P exec grim
+bindsym $mod+Control+P exec grim -g "$(slurp)" - | swappy -f -
+bindsym $mod+Space exec wofi
+bindsym $mod+Control+L exec swaylock
+bindsym $mod+S splittoggle
+bindsym $mod+F fullscreen toggle
+
+bindsym $mod+C exec wl-copy < /dev/null
+bindsym $mod+V exec "cliphist list | wofi -dmenu | cliphist decode | wl-copy && sleep 0.1 && wl-paste"
+
+# ウィンドウ間の移動
+bindsym $mod+J focus down
+bindsym $mod+K focus up
+bindsym $mod+H focus left
+bindsym $mod+L focus right
+
+# ウィンドウの移動
+bindsym $mod+Shift+J move down
+bindsym $mod+Shift+K move up
+bindsym $mod+Shift+H move left
+bindsym $mod+Shift+L move right
+
+# ウィンドウサイズの変更
+bindsym $mod+Right resize grow width 10px
+bindsym $mod+Left resize shrink width 10px
+bindsym $mod+Up resize shrink height 10px
+bindsym $mod+Down resize grow height 10px
+
+# ワークスペース間の移動
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# ウィンドウの移動
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+
