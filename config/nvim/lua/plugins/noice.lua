@@ -7,6 +7,15 @@ return {
         signature = {
           enabled = false,
         }
+      },
+      routes = {
+        {
+          filter = {
+            event = "lsp",
+            find = "hecking"
+          },
+          opts = { skip = true }
+        }
       }
     },
     dependencies = {
