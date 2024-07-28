@@ -11,13 +11,14 @@ function mkcd() {
 }
 alias mkcd="mkcd"
 
-alias v='nvim'
-alias vim='nvim'
+# alias vi='nvim'
+# alias vim='nvim'
 
 alias bat='bat --style=numbers'
 
 alias sudo='sudo '
 alias :q='exit'
+alias :e=$EDITOR
 alias so='source ~/.config/zsh/.zshrc'
 alias dotfiles='cd ~/dotfiles'
 

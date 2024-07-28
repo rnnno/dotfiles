@@ -16,6 +16,7 @@ return {
     vim.cmd [[ highlight LineNr guifg=#fffacd ]]
     vim.cmd [[ highlight Comment guifg=#a9a9a9]]
 
+    vim.cmd [[ highlight FloatBorder guibg=NONE ]]
 
 
     -- vim.cmd[[colorscheme habamax]]
