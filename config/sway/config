@@ -28,10 +28,14 @@ exec udiskie &
 exec blueman-applet &
 exec nm-applet &
 exec pavucontrol &
+exec --no-startup-id pulseaudio --start
 exec xdg-desktop-portal-wlr &
 exec wl-paste --type text --watch cliphist store &
 exec wl-paste --type image --watch cliphist store &
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+exec --no-startup-id discord --start-minimized
+exec --no-startup-id slack --startup
 
 # アイドル時の動作
 exec swayidle -w timeout 300 'swaylock' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
@@ -62,7 +66,7 @@ gaps outer 20
 # カラーテーマ
 set $bg #2E3440
 set $fg #D8DEE9
-set $primary #88C0D0
+set $primary #BA55d3
 set $secondary #5E81AC
 set $alert #BF616A
 
@@ -89,6 +93,7 @@ bindsym $mod+Space exec wofi
 bindsym $mod+Control+L exec swaylock
 bindsym $mod+S splittoggle
 bindsym $mod+F fullscreen toggle
+bindsym $mod+Shift+F floating toggle
 
 bindsym $mod+C exec wl-copy < /dev/null
 bindsym $mod+V exec "cliphist list | wofi -dmenu | cliphist decode | wl-copy && sleep 0.1 && wl-paste"
@@ -106,10 +111,10 @@ bindsym $mod+Shift+H move left
 bindsym $mod+Shift+L move right
 
 # ウィンドウサイズの変更
-bindsym $mod+Right resize grow width 10px
-bindsym $mod+Left resize shrink width 10px
-bindsym $mod+Up resize shrink height 10px
-bindsym $mod+Down resize grow height 10px
+bindsym $mod+U resize grow width 10px
+bindsym $mod+Shift+U resize shrink width 10px
+bindsym $mod+Y resize grow height 10px
+bindsym $mod+Shift+Y resize shrink height 10px
 
 # ワークスペース間の移動
 bindsym $mod+1 workspace number 1
