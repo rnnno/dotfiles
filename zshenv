@@ -16,6 +16,10 @@ export PATH="$GOPATH/bin:$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
+export PATH="$PATH:/opt/homebrew/bin"
+
+export PATH="$PATH:$HOME/.nix-profile/bin"
+
 
 
 export EDITOR=nvim

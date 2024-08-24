@@ -81,10 +81,6 @@ return {
           forceCompletionPattern = [[\.\w*|:\w*|->\w*]],
           sorters = { 'sorter_lsp-kind', 'sorter_rank' },
         },
-        deoppet = {
-          mark = '[DP]',
-          dup = true,
-        },
         file = {
           mark = '[F]',
           isVolatile = true,
@@ -92,7 +88,7 @@ return {
         },
         skkeleton = {
           mark = '[SKK]',
-          matchers = { 'skkeleton' },
+          matchers = {},
           sorters = {},
           converters = {},
           isVolatile = true,
