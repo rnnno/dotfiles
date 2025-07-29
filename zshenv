@@ -20,6 +20,9 @@ export PATH="$PATH:/opt/homebrew/bin"
 
 export PATH="$PATH:$HOME/.nix-profile/bin"
 
+export NEOVIM_HOME=$HOME/.local/nvim
+export PATH="$PATH:$NEOVIM_HOME/bin"
+
 
 
 export EDITOR=nvim

@@ -50,6 +50,7 @@ return {
       'rom',
       {
         jj = 'escape',
+        ["!"] = { "!", "" },
       }
     )
   end,

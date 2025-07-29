@@ -4,21 +4,31 @@ return {
   config = function()
     require('catppuccin').setup({
       flavour = 'macchiato',
-      transparent_backgound = true,
+      transparent_background = true,
     })
-    vim.cmd [[colorscheme catppuccin]]
-    vim.cmd [[ highlight Normal guibg=NONE ctermbg=NONE ]]
-    vim.cmd [[ highlight VertSplit guibg=NONE ctermbg=NONE ]]
-    vim.cmd [[ highlight StatusLine guibg=NONE ctermbg=NONE ]]
-    vim.cmd [[ highlight StatusLineNC guibg=NONE ctermbg=NONE ]]
 
-    vim.cmd [[ highlight NormalNC guibg=NONE ]]
-    vim.cmd [[ highlight LineNr guifg=#fffacd ]]
-    vim.cmd [[ highlight Comment guifg=#a9a9a9]]
+    vim.cmd [[ colorscheme catppuccin]]
 
-    vim.cmd [[ highlight FloatBorder guibg=NONE ]]
+    local transparent_groups = {
+      'Normal',
+      'VertSplit',
+      'StatusLine',
+      'StatusLineNC',
+      'TabLine',
+      'TabLineFill',
+      'NormalNC',
+      'NormalSB',
+      'FloatBorder',
+      'FloatTitle',
+      'FloatFooter',
+      'TelescopeNormal',
+    }
 
+    for _, group in ipairs(transparent_groups) do
+      vim.api.nvim_set_hl(0, group, { bg = 'NONE' })
+    end
 
-    -- vim.cmd[[colorscheme habamax]]
+    vim.api.nvim_set_hl(0, 'LineNr', { fg = '#fffacd' })
+    vim.api.nvim_set_hl(0, 'Comment', { fg = '#a9a9a9' })
   end
 }

@@ -2,7 +2,7 @@ return {
   {
     'sindrets/diffview.nvim',
     lazy = true,
-    event = 'BufReadPre',
+    event = 'VimEnter',
     opts = {},
   },
   {

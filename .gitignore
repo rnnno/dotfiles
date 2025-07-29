@@ -27,3 +27,5 @@ config/thefuck/__pycache__
 !config/gh
 config/gh/hosts.yml
 
+.DS_store
+

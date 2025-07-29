@@ -1,7 +1,7 @@
 return {
   'akinsho/bufferline.nvim',
   lazy = true,
-  event = 'BufReadPre',
+  event = 'BufWinEnter',
   dependencies = {
     'famiu/bufdelete.nvim',
     'nvim-tree/nvim-web-devicons',
@@ -20,7 +20,6 @@ return {
 
         separator_style = { '', '' },
 
-
         always_show_bufferline = true,
 
         diagnostics = 'nvim_lsp',
@@ -34,8 +33,6 @@ return {
           return s
         end
       }
-
-
     })
 
     local keymap = vim.keymap.set

@@ -5,107 +5,102 @@ return {
     'williamboman/mason-lspconfig.nvim',
   },
   lazy = true,
-  -- event = 'BufEnter',
   event = 'VimEnter',
   config = function()
+    local servers = {
+      "lua_ls", "ts_ls", "eslint", "denols", "jsonls", "clangd", "rust_analyzer", "taplo", "autotools_ls", "fsautocomplete"
+    }
+
     local nvim_lsp = require('lspconfig')
     require('lspconfig.ui.windows').default_options.border = 'single'
     require('mason').setup({
-      ui = { border = 'single' }
+      ui = { border = 'single' },
     })
+
     require('mason-lspconfig').setup({
-      ensure_installed = {
-        "lua_ls", "tsserver", "eslint", "denols", "jsonls", "clangd", "rust_analyzer", "taplo", "autotools_ls",
-        "fsautocomplete"
-      },
-      automatic_installation = true
-    })
-    require('mason-lspconfig').setup_handlers({
-      function(server_name)
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities.textDocument.completion.completionItem.snippetSupport = true
+      automatic_enable = true,
+      ensure_installed = servers,
+      automatic_installation = true,
+      handlers = {
+        function(server_name)
+          local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-        local root = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", "package.json")(vim.fn.getcwd()) or
-            (vim.fn.getcwd())
-        local is_deno_root = vim.fn.glob(root .. '/deno.json') ~= '' or vim.fn.glob(root .. '/deno.jsonc') ~= ''
-        local is_node_root = vim.fn.glob(root .. '/package.json') ~= ''
+          local cwd = vim.loop.cwd()
+          local is_deno_root = vim.fn.glob(cwd .. '/deno.json') ~= '' or vim.fn.glob(cwd .. '/deno.jsonc') ~= ''
+          local is_node_root = vim.fn.glob(cwd .. '/package.json') ~= ''
 
-        local opts = {}
-
-        if server_name == "lua_ls" then
-          opts.settings = {
-            Lua = {
-              runtime = {
-                version = "LuaJIT",
-                pathStrict = true,
-                path = { "?.lua", "?/init.lua" },
-              },
-              workspace = {
-                library = vim.list_extend(vim.api.nvim_get_runtime_file("lua", true), {
-                  "${3rd}/luv/library",
-                  "${3rd}/busted/library",
-                  "${3rd}/luassert/library",
-                }),
-                checkThirdParty = "Disable",
-              },
-            },
+          local opts = {
+            capabilities = capabilities,
           }
-        end
 
-        if server_name == "denols" then
-          if not is_deno_root then
-            return
+          if server_name == "lua_ls" then
+            opts.settings = {
+              Lua = {
+                runtime = {
+                  version = "LuaJIT",
+                  pathStrict = true,
+                  path = { "?.lua", "?/init.lua" },
+                },
+                workspace = {
+                  library = vim.list_extend(vim.api.nvim_get_runtime_file("lua", true), {
+                    "${3rd}/luv/library",
+                    "${3rd}/busted/library",
+                    "${3rd}/luassert/library",
+                  }),
+                  checkThirdParty = "Disable",
+                },
+              },
+            }
           end
 
-          opts.root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc")
-          opts.init_options = {
-            lint = true,
-            unstable = true,
-            suggest = {
-              imports = {
-                hosts = {
-                  ["https://deno.land"] = true,
-                  ["https://cdn.nest.land"] = true,
-                  ["https://crux.land"] = true
+          if server_name == "denols" then
+            if not is_deno_root then return end
+            opts.root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc")
+            opts.init_options = {
+              lint = true,
+              unstable = true,
+              suggest = {
+                imports = {
+                  hosts = {
+                    ["https://deno.land"] = true,
+                    ["https://cdn.nest.land"] = true,
+                    ["https://crux.land"] = true
+                  }
                 }
               }
             }
-          }
-        end
-
-        if server_name == "tsserver" then
-          if not is_node_root then
-            return
           end
 
-          opts.root_dir = nvim_lsp.util.root_pattern("package.json")
-        end
-
-        if server_name == "eslint" then
-          if not is_node_root then
-            return
+          if server_name == "tsserver" then
+            if not is_node_root then return end
+            opts.root_dir = nvim_lsp.util.root_pattern("package.json")
           end
 
-          opts.root_dir = nvim_lsp.util.root_pattern("package.json")
-        end
+          if server_name == "eslint" then
+            if not is_node_root then return end
+            opts.root_dir = nvim_lsp.util.root_pattern("package.json")
+          end
 
-        require('lspconfig')[server_name].setup(opts)
-      end
+          require('lspconfig')[server_name].setup(opts)
+        end
+      },
     })
 
     local keymap = vim.keymap.set
-    keymap('n', 'ge', '<CMD>lua vim.diagnostic.open_float()<CR>')
-    keymap('n', 'g]', '<CMD>lua vim.diagnostic.goto_next()<CR>')
-    keymap('n', 'g[', '<CMD>lua vim.diagnostic.goto_prev()<CR>')
-    keymap('n', 'K', '<CMD>lua vim.lsp.buf.hover()<CR>')
-    keymap('n', 'gd', '<CMD>lua vim.lsp.buf.definition<CR>')
-    keymap('n', 'gD', '<CMD>lua vim.lsp.buf.declartion<CR>')
-    keymap('n', 'gt', '<CMD>lua vim.lsp.buf.type_definition<CR>')
-    keymap('n', 'gr', '<CMD>lua vim.lsp.buf.references<CR>')
-    keymap('n', 'ga', '<CMD>lua vim.lsp.buf.code_action<CR>')
-    keymap('n', 'gi', '<CMD>lua vim.lsp.buf.implementation<CR>')
-    keymap('n', 'gf', '<CMD>lua vim.lsp.buf.format({ async = true })<CR>')
-    keymap('n', 'gn', '<CMD>lua vim.lsp.buf.rename()<CR>')
-  end,
+    local opts = { noremap = true, silent = true }
 
+    keymap('n', 'ge', vim.diagnostic.open_float, opts)
+    keymap('n', 'g]', vim.diagnostic.goto_next, opts)
+    keymap('n', 'g[', vim.diagnostic.goto_prev, opts)
+    keymap('n', 'K', vim.lsp.buf.hover, opts)
+    keymap('n', 'gd', vim.lsp.buf.definition, opts)
+    keymap('n', 'gD', vim.lsp.buf.declaration, opts)
+    keymap('n', 'gt', vim.lsp.buf.type_definition, opts)
+    keymap('n', 'gr', vim.lsp.buf.references, opts)
+    keymap('n', 'ga', vim.lsp.buf.code_action, opts)
+    keymap('n', 'gi', vim.lsp.buf.implementation, opts)
+    keymap('n', 'gf', function() vim.lsp.buf.format({ async = true }) end, opts)
+    keymap('n', 'gn', vim.lsp.buf.rename, opts)
+  end,
 }
+

@@ -10,7 +10,7 @@ return {
   line_height = 1.0,
   color_scheme = "iceberg-dark",
   font = wezterm.font_with_fallback({
-    { family = "FiraCodeNerdFont", harfbuzz_features = { "cv01", "cv02", "cv06", "cv23", "cv24", "cv25", "cv26", "cv29", "cv32", "ss02", "ss03", "ss05", "ss09", "ss07" }, weight = "Medium" },
+    { family = "FiraCode Nerd Font", harfbuzz_features = { "cv01", "cv02", "cv06", "cv23", "cv24", "cv25", "cv26", "cv29", "cv32", "ss02", "ss03", "ss05", "ss09", "ss07" }, weight = "Medium" },
   }),
   use_fancy_tab_bar = true,
   hide_tab_bar_if_only_one_tab = true,

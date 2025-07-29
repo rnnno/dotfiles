@@ -2,6 +2,10 @@ return {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
     opts = {
       lsp = {
         signature = {
@@ -12,16 +16,12 @@ return {
         {
           filter = {
             event = "lsp",
-            find = "hecking"
+            find = "hecking",
           },
-          opts = { skip = true }
-        }
-      }
+          opts = { skip = true },
+        },
+      },
     },
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    }
   },
   {
     "rcarriga/nvim-notify",
@@ -39,3 +39,4 @@ return {
     end
   }
 }
+
