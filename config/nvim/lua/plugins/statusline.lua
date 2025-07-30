@@ -22,7 +22,7 @@ end
 return {
   'tamton-aquib/staline.nvim',
   lazy = true,
-  event = 'BufReadPre',
+  event = 'BufWinEnter',
   config = function()
     require "staline".setup {
       sections = {

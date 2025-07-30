@@ -2,7 +2,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     lazy = true,
-    event = 'BufEnter',
+    event = 'VeryLazy',
     dependencies = {
       'yioneko/nvim-yati',
     },
@@ -27,7 +27,7 @@ return {
   {
     'andersevenrud/nvim_context_vt',
     lazy = true,
-    event = 'BufReadPre',
+    event = 'BufWinEnter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },

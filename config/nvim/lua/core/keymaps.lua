@@ -2,27 +2,37 @@ local keymap = vim.keymap.set
 
 vim.g.mapleader = ' '
 
-keymap('n', '<A-v>', '<C-v>')
+local opts = { noremap = true, silent = true }
 
-keymap('n', '<leader>w', '<CMD>w<CR>')
+-- visual mode
+keymap('n', '<A-v>', '<C-v>', opts)
 
-keymap('n', 'j', 'gj')
-keymap('n', 'k', 'gk')
+-- save
+keymap('n', '<leader>w', '<CMD>w<CR>', opts)
 
-keymap("n", "<M-j>", "<Cmd>move .+1<CR>==")
-keymap("x", "<M-j>", ":move '>+1<CR>gv=gv")
-keymap("n", "<M-k>", "<Cmd>move .-2<CR>==")
-keymap("x", "<M-k>", ":move '<-2<CR>gv=gv")
+-- move cursor
+keymap('n', 'j', 'gj', opts)
+keymap('n', 'k', 'gk', opts)
 
-keymap('n', 'ss', '<CMD>split<Return><C-w>w')
-keymap('n', 'sv', '<CMD>vsplit<Return><C-w>w')
+-- move line
+keymap("n", "<M-j>", "<Cmd>move .+1<CR>==", opts)
+keymap("x", "<M-j>", ":move '>+1<CR>gv=gv", opts)
+keymap("n", "<M-k>", "<Cmd>move .-2<CR>==", opts)
+keymap("x", "<M-k>", ":move '<-2<CR>gv=gv", opts)
 
-keymap('n', '<leader>h', '<C-w>h')
-keymap('n', '<leader>k', '<C-w>k')
-keymap('n', '<leader>j', '<C-w>j')
-keymap('n', '<leader>l', '<C-w>l')
+-- split window
+keymap('n', 'ss', '<CMD>split<Return><C-w>w', opts)
+keymap('n', 'sv', '<CMD>vsplit<Return><C-w>w', opts)
 
-keymap('i', 'jj', '<Esc>')
-keymap('t', 'jj', '<C-\\><C-n>')
+-- move window
+keymap('n', '<leader>h', '<C-w>h', opts)
+keymap('n', '<leader>k', '<C-w>k', opts)
+keymap('n', '<leader>j', '<C-w>j', opts)
+keymap('n', '<leader>l', '<C-w>l', opts)
 
-keymap('n', '<F1>', '<CMD>edit $MYVIMRC<CR>')
+-- escape
+keymap('i', 'jj', '<Esc>', opts)
+keymap('t', 'jj', '<C-\\><C-n>', opts)
+
+-- edit config
+keymap('n', '<F1>', '<CMD>edit $MYVIMRC<CR>', opts)
