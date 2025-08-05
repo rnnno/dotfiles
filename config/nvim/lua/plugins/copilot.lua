@@ -64,7 +64,7 @@ return {
           },
           Commit = {
             prompt =
-            '実装差分に対するコミットメッセージを日本語で記述してください。',
+            '実装差分に対するコミットメッセージを英語で記述してください。',
             mapping = '<leader>cco',
             description = "コミットメッセージの作成をお願いする",
             selection = require('CopilotChat.select').gitdiff,
