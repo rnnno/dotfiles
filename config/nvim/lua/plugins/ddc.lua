@@ -17,6 +17,7 @@ return {
       'hrsh7th/vim-vsnip',
       'LumaKernel/ddc-source-file',
       'Shougo/ddc-source-cmdline',
+      'Shougo/ddc-source-copilot',
       -- Filter
       'Shougo/ddc-filter-matcher_head',
       'Shougo/ddc-filter-sorter_rank',
@@ -40,6 +41,7 @@ return {
 
 
       patch_global('sources', {
+        'copilot',
         'skkeleton',
         'lsp',
         -- 'vsnip',
@@ -99,6 +101,14 @@ return {
         },
         ['cmdline-history'] = {
           mark = '[HIST]',
+        },
+        copilot = {
+          mark = '[Copilot]',
+          matchers = {},
+          sorters = {},
+          converters = {},
+          minAutoCompleteLength = 1,
+          isVolatile = true,
         },
       })
 
@@ -192,3 +202,4 @@ return {
     end,
   },
 }
+
