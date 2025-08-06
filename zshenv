@@ -13,6 +13,9 @@ export PATH="$DOTNET_ROOT:$PATH"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
