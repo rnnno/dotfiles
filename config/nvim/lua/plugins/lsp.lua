@@ -8,7 +8,7 @@ return {
   event = 'VimEnter',
   config = function()
     local servers = {
-      "lua_ls", "ts_ls", "eslint", "denols", "jsonls", "clangd", "rust_analyzer", "taplo", "autotools_ls"
+      "lua_ls", "ts_ls", "eslint", "denols", "jsonls", "clangd", "rust_analyzer", "taplo", "autotools_ls", "fsautocomplete"
     }
 
     local nvim_lsp = require('lspconfig')
