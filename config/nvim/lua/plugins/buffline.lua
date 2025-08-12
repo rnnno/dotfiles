@@ -42,3 +42,4 @@ return {
     keymap('n', '<leader>d', "<CMD>lua require('bufdelete').bufdelete(0, true)<CR>")
   end
 }
+

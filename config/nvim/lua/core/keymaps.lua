@@ -36,3 +36,4 @@ keymap('t', 'jj', '<C-\\><C-n>', opts)
 
 -- edit config
 keymap('n', '<F1>', '<CMD>edit $MYVIMRC<CR>', opts)
+

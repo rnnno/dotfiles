@@ -29,7 +29,7 @@ return {
     end
 
     -- なんかこうしないと白くなる
-    vim.cmd[[ highlight FloatBorder guibg=NONE ]]
+    vim.cmd [[ highlight FloatBorder guibg=NONE ]]
 
     vim.api.nvim_set_hl(0, 'LineNr', { fg = '#fffacd' })
     vim.api.nvim_set_hl(0, 'Comment', { fg = '#a9a9a9' })

@@ -22,7 +22,7 @@ return {
     opts = {
       debug = false,
     },
-    config = function ()
+    config = function()
       require('CopilotChat').setup({
         show_help = "yes",
         prompts = {
