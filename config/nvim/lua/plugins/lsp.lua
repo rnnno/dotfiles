@@ -89,18 +89,17 @@ return {
     local keymap = vim.keymap.set
     local opts = { noremap = true, silent = true }
 
-    keymap('n', 'ge', vim.diagnostic.open_float, opts)
-    keymap('n', 'g]', vim.diagnostic.goto_next, opts)
-    keymap('n', 'g[', vim.diagnostic.goto_prev, opts)
-    keymap('n', 'K', vim.lsp.buf.hover, opts)
-    keymap('n', 'gd', vim.lsp.buf.definition, opts)
-    keymap('n', 'gD', vim.lsp.buf.declaration, opts)
-    keymap('n', 'gt', vim.lsp.buf.type_definition, opts)
-    keymap('n', 'gr', vim.lsp.buf.references, opts)
-    keymap('n', 'ga', vim.lsp.buf.code_action, opts)
-    keymap('n', 'gi', vim.lsp.buf.implementation, opts)
-    keymap('n', 'gf', function() vim.lsp.buf.format({ async = true }) end, opts)
-    keymap('n', 'gn', vim.lsp.buf.rename, opts)
+    keymap('n', 'ge', vim.diagnostic.open_float,
+      vim.tbl_extend('force', opts, { desc = 'Show diagnostics in floating window' }))
+    keymap('n', 'g]', vim.diagnostic.goto_next, vim.tbl_extend('force', opts, { desc = 'Go to next diagnostic' }))
+    keymap('n', 'g[', vim.diagnostic.goto_prev, vim.tbl_extend('force', opts, { desc = 'Go to previous diagnostic' }))
+    keymap('n', 'K', vim.lsp.buf.hover, vim.tbl_extend('force', opts, { desc = 'Show hover information' }))
+    keymap('n', 'gd', vim.lsp.buf.definition, vim.tbl_extend('force', opts, { desc = 'Go to definition' }))
+    keymap('n', 'gD', vim.lsp.buf.declaration, vim.tbl_extend('force', opts, { desc = 'Go to declaration' }))
+    keymap('n', 'gt', vim.lsp.buf.type_definition, vim.tbl_extend('force', opts, { desc = 'Go to type definition' }))
+    keymap('n', 'gr', vim.lsp.buf.references, vim.tbl_extend('force', opts, { desc = 'List references' }))
+    keymap('n', 'ga', vim.lsp.buf.code_action, vim.tbl_extend('force', opts, { desc = 'Show code actions' }))
+    keymap('n', 'gn', vim.lsp.buf.rename, vim.tbl_extend('force', opts, { desc = 'Rename symbol' }))
   end,
 }
 
