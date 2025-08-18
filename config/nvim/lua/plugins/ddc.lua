@@ -43,6 +43,7 @@ return {
       patch_global('sources', {
         'copilot',
         'skkeleton',
+        'skkeleton_okuri',
         'lsp',
         -- 'vsnip',
         'file',
@@ -95,6 +96,14 @@ return {
           converters = {},
           isVolatile = true,
           minAutoCompleteLength = 2,
+        },
+        skkeleton_okuri = {
+          mark = '[SKK*]',
+          matchers = {},
+          sorters = {},
+          converters = {},
+          isVolatile = true,
+          minAutoCompleteLength = 1,
         },
         cmdline = {
           mark = '[CMD]',
