@@ -12,6 +12,6 @@ chpwd () { eza --group-directories-first --icons }
 
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(sheldon source)"
-
 
