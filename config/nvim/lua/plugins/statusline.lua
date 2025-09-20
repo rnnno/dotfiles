@@ -26,7 +26,7 @@ return {
   config = function()
     require "staline".setup {
       sections = {
-        left = { '  ', 'mode', ' ', { 'Staline', skk_mode }, ' ', 'branch', ' ', },
+        left = { '  ', 'mode', ' ', { 'Staline', skk_mode }, ' ', 'branch', ' ' },
         mid = { 'lsp' },
         right = { 'file_name', 'line_column' }
       },
@@ -40,6 +40,12 @@ return {
 
         c = "#ff7f50",
       },
+      mode_icons = {
+        n = "󰋜 ",
+        i = " ",
+        c = " ",
+        v = "󰈈 ",
+    },
       defaults = {
         true_colors = true,
         line_column = " [%l/%L] :%c  ",
