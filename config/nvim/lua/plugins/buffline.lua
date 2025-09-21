@@ -1,4 +1,5 @@
 return {
+  {
   'akinsho/bufferline.nvim',
   lazy = true,
   event = 'BufWinEnter',
@@ -41,5 +42,29 @@ return {
 
     keymap('n', '<leader>d', "<CMD>lua require('bufdelete').bufdelete(0, true)<CR>")
   end
+  },
+  {
+    'Bekaboo/dropbar.nvim',
+    lazy = true,
+    event = 'BufWinEnter',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      'nvim-treesitter/nvim-treesitter',
+    },
+    opts = {
+      menu = {
+        preview = true,
+      },
+    },
+    config = function(_, opts)
+      local dropbar = require('dropbar')
+      dropbar.setup(opts)
+
+      local api = require('dropbar.api')
+      vim.keymap.set('n', '<leader>bb', function()
+        api.pick()
+      end, { desc = 'Dropbar breadcrumbs picker' })
+    end,
+  },
 }
 

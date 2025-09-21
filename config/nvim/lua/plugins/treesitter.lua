@@ -22,7 +22,7 @@ return {
           enable = false,
         },
       })
-    end
+    end,
   },
   {
     'andersevenrud/nvim_context_vt',
@@ -35,7 +35,7 @@ return {
       require('nvim_context_vt').setup({
         enable = true,
       })
-    end
+    end,
   },
   {
     'Wansmer/treesj',
@@ -51,7 +51,16 @@ return {
         use_default_keymaps = false,
       })
     end,
-  }
-
+  },
+  {
+    'shellRaining/hlchunk.nvim',
+    lazy = true,
+    event = { 'BufReadPost', 'BufNewFile' },
+    opts = {
+      chunk = { enable = true },
+      indent = { enable = false },
+      line_num = { enable = true },
+      blank = { enable = false },
+    },
+  },
 }
-
