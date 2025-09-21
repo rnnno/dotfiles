@@ -7,7 +7,7 @@ return {
       transparent_background = true,
     })
 
-    vim.cmd [[ colorscheme catppuccin]]
+    vim.cmd('colorscheme catppuccin')
 
     local transparent_groups = {
       -- 'Normal',
@@ -29,10 +29,9 @@ return {
     end
 
     -- なんかこうしないと白くなる
-    vim.cmd [[ highlight FloatBorder guibg=NONE ]]
+    vim.cmd('highlight FloatBorder guibg=NONE')
 
     vim.api.nvim_set_hl(0, 'LineNr', { fg = '#fffacd' })
     vim.api.nvim_set_hl(0, 'Comment', { fg = '#a9a9a9' })
   end
 }
-

@@ -15,10 +15,10 @@ keymap('n', 'j', 'gj', opts)
 keymap('n', 'k', 'gk', opts)
 
 -- move line
-keymap("n", "<M-j>", "<Cmd>move .+1<CR>==", opts)
-keymap("x", "<M-j>", ":move '>+1<CR>gv=gv", opts)
-keymap("n", "<M-k>", "<Cmd>move .-2<CR>==", opts)
-keymap("x", "<M-k>", ":move '<-2<CR>gv=gv", opts)
+keymap('n', '<M-j>', '<CMD>move .+1<CR>==', opts)
+keymap('x', '<M-j>', ":move '>+1<CR>gv=gv", opts)
+keymap('n', '<M-k>', '<CMD>move .-2<CR>==', opts)
+keymap('x', '<M-k>', ":move '<-2<CR>gv=gv", opts)
 
 -- split window
 keymap('n', 'ss', '<CMD>split<Return><C-w>w', opts)
@@ -36,4 +36,3 @@ keymap('t', 'jj', '<C-\\><C-n>', opts)
 
 -- edit config
 keymap('n', '<F1>', '<CMD>edit $MYVIMRC<CR>', opts)
-

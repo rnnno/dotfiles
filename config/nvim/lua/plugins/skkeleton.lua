@@ -12,7 +12,7 @@ return {
     keymap('t', '<C-j>', '<plug>(skkeleton-toggle)')
 
     local dictionaries = {}
-    local handle = io.popen("ls $HOME/.skk/*")
+    local handle = io.popen('ls $HOME/.skk/*')
     if handle then
       for file in handle:lines() do
         table.insert(dictionaries, file)
@@ -50,9 +50,8 @@ return {
       'rom',
       {
         jj = 'escape',
-        ["!"] = { "!", "" },
+        ['!'] = { '!', '' },
       }
     )
   end,
 }
-

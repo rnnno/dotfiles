@@ -9,8 +9,8 @@ return {
     opts = { library = { { path = '${3rd}/luv/library', words = false } } },
   },
   {
-    "adelarsq/neofsharp.vim",
+    'adelarsq/neofsharp.vim',
     lazy = true,
-    ft = { "fsharp" },
+    ft = { 'fsharp' },
   },
 }

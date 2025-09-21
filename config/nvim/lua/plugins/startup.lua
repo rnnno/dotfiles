@@ -55,12 +55,12 @@ return {
     }
 
     dashboard.section.buttons.val = {
-      dashboard.button("f", "󰥨  Find file", "<CMD>Telescope file_browser<CR>"),
-      dashboard.button("g", "󰱼  Find text", "<CMD>Telescope live_grep<CR>"),
-      dashboard.button("r", "  Recent file", "<CMD>Telescope oldfiles<CR>"),
-      dashboard.button("u", "󰊳  Update", "<CMD>Lazy sync<CR>"),
-      dashboard.button("c", "  Config", "<CMD>e $MYVIMRC | :cd %:p:h | :silent !pwd <CR>"),
-      dashboard.button("q", "  Quit", "<CMD>qa<CR>"),
+      dashboard.button('f', '󰥨  Find file', '<CMD>Telescope file_browser<CR>'),
+      dashboard.button('g', '󰱼  Find text', '<CMD>Telescope live_grep<CR>'),
+      dashboard.button('r', '  Recent file', '<CMD>Telescope oldfiles<CR>'),
+      dashboard.button('u', '󰊳  Update', '<CMD>Lazy sync<CR>'),
+      dashboard.button('c', '  Config', '<CMD>e $MYVIMRC | :cd %:p:h | :silent !pwd <CR>'),
+      dashboard.button('q', '  Quit', '<CMD>qa<CR>'),
     }
 
 
@@ -69,9 +69,9 @@ return {
       local plugins = stats.count
 
       local version = vim.version()
-      local version_info = "   version" .. version.major .. "." .. version.minor .. "." .. version.patch
+      local version_info = '   version' .. version.major .. '.' .. version.minor .. '.' .. version.patch
 
-      return "⚡plugins " .. plugins .. version_info
+      return '⚡plugins ' .. plugins .. version_info
     end
 
     dashboard.section.footer.val = footer()
@@ -80,4 +80,3 @@ return {
   end
 
 }
-

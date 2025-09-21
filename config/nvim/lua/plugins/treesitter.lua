@@ -8,6 +8,9 @@ return {
     },
     config = function()
       require('nvim-treesitter.configs').setup({
+        modules = {},
+        ignore_install = {},
+        sync_install = true,
         ensure_installed = { 'c', 'cpp', 'vim', 'lua', 'go', 'html', 'css', 'tsx', 'typescript' },
         auto_install = true,
         highlight = {
@@ -64,3 +67,4 @@ return {
     },
   },
 }
+
