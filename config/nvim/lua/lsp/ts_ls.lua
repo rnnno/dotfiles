@@ -2,7 +2,7 @@ local util = require('lsp.util')
 
 return {
   root_dir = function(bufnr, on_dir)
-    if util.is_deno_project(bufnr) then
+    if util.find_deno_root(bufnr) then
       return
     end
     local root = util.find_node_root(bufnr)
