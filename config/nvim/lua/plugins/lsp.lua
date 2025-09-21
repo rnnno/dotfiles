@@ -4,102 +4,81 @@ return {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
   },
-  lazy = true,
-  event = 'VimEnter',
+  event = { 'BufReadPre', 'BufNewFile' },
   config = function()
-    local servers = {
-      "lua_ls", "ts_ls", "eslint", "denols", "jsonls", "clangd", "rust_analyzer", "taplo", "autotools_ls"
-    }
-
-    local nvim_lsp = require('lspconfig')
-    require('lspconfig.ui.windows').default_options.border = 'single'
+    local server_configs = require('lsp')
+    local servers = vim.tbl_keys(server_configs)
     require('mason').setup({
       ui = { border = 'single' },
     })
-
     require('mason-lspconfig').setup({
-      automatic_enable = true,
       ensure_installed = servers,
       automatic_installation = true,
-      handlers = {
-        function(server_name)
-          local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-          local cwd = vim.loop.cwd()
-          local is_deno_root = vim.fn.glob(cwd .. '/deno.json') ~= '' or vim.fn.glob(cwd .. '/deno.jsonc') ~= ''
-          local is_node_root = vim.fn.glob(cwd .. '/package.json') ~= ''
-
-          local opts = {
-            capabilities = capabilities,
-          }
-
-          if server_name == "lua_ls" then
-            opts.settings = {
-              Lua = {
-                runtime = {
-                  version = "LuaJIT",
-                  pathStrict = true,
-                  path = { "?.lua", "?/init.lua" },
-                },
-                workspace = {
-                  library = vim.list_extend(vim.api.nvim_get_runtime_file("lua", true), {
-                    "${3rd}/luv/library",
-                    "${3rd}/busted/library",
-                    "${3rd}/luassert/library",
-                  }),
-                  checkThirdParty = "Disable",
-                },
-              },
-            }
-          end
-
-          if server_name == "denols" then
-            if not is_deno_root then return end
-            opts.root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc")
-            opts.init_options = {
-              lint = true,
-              unstable = true,
-              suggest = {
-                imports = {
-                  hosts = {
-                    ["https://deno.land"] = true,
-                    ["https://cdn.nest.land"] = true,
-                    ["https://crux.land"] = true
-                  }
-                }
-              }
-            }
-          end
-
-          if server_name == "tsserver" then
-            if not is_node_root then return end
-            opts.root_dir = nvim_lsp.util.root_pattern("package.json")
-          end
-
-          if server_name == "eslint" then
-            if not is_node_root then return end
-            opts.root_dir = nvim_lsp.util.root_pattern("package.json")
-          end
-
-          require('lspconfig')[server_name].setup(opts)
-        end
-      },
     })
 
-    local keymap = vim.keymap.set
-    local opts = { noremap = true, silent = true }
+    vim.diagnostic.config({
+      virtual_text = false,
+      virtual_lines = { current_line = true },
+      float = { border = 'single' },
+      severity_sort = true,
+    })
 
-    keymap('n', 'ge', vim.diagnostic.open_float,
-      vim.tbl_extend('force', opts, { desc = 'Show diagnostics in floating window' }))
-    keymap('n', 'g]', vim.diagnostic.goto_next, vim.tbl_extend('force', opts, { desc = 'Go to next diagnostic' }))
-    keymap('n', 'g[', vim.diagnostic.goto_prev, vim.tbl_extend('force', opts, { desc = 'Go to previous diagnostic' }))
-    keymap('n', 'K', vim.lsp.buf.hover, vim.tbl_extend('force', opts, { desc = 'Show hover information' }))
-    keymap('n', 'gd', vim.lsp.buf.definition, vim.tbl_extend('force', opts, { desc = 'Go to definition' }))
-    keymap('n', 'gD', vim.lsp.buf.declaration, vim.tbl_extend('force', opts, { desc = 'Go to declaration' }))
-    keymap('n', 'gt', vim.lsp.buf.type_definition, vim.tbl_extend('force', opts, { desc = 'Go to type definition' }))
-    keymap('n', 'gr', vim.lsp.buf.references, vim.tbl_extend('force', opts, { desc = 'List references' }))
-    keymap('n', 'ga', vim.lsp.buf.code_action, vim.tbl_extend('force', opts, { desc = 'Show code actions' }))
-    keymap('n', 'gn', vim.lsp.buf.rename, vim.tbl_extend('force', opts, { desc = 'Rename symbol' }))
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    local completion_item = capabilities.textDocument.completion.completionItem
+    completion_item.snippetSupport = true
+    completion_item.preselectSupport = true
+    completion_item.insertReplaceSupport = true
+    completion_item.labelDetailsSupport = true
+    completion_item.deprecatedSupport = true
+    completion_item.commitCharactersSupport = true
+    completion_item.tagSupport = { valueSet = { 1 } }
+    completion_item.resolveSupport = {
+      properties = {
+        'documentation',
+        'detail',
+        'additionalTextEdits',
+      },
+    }
+
+    local default_handlers = {
+      ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'single' }),
+      ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'single' }),
+    }
+
+    vim.lsp.config('*', {
+      capabilities = capabilities,
+      handlers = default_handlers,
+    })
+
+    for name, config in pairs(server_configs) do
+      vim.lsp.config(name, vim.tbl_deep_extend('force', {
+        capabilities = capabilities,
+        handlers = default_handlers,
+      }, config))
+    end
+
+    if #servers > 0 then
+      vim.lsp.enable(servers)
+    end
+
+    local group = vim.api.nvim_create_augroup('UserLspKeymaps', { clear = true })
+    vim.api.nvim_create_autocmd('LspAttach', {
+      group = group,
+      callback = function(event)
+        local opts = { silent = true, buffer = event.buf }
+
+        vim.keymap.set('n', 'ge', vim.diagnostic.open_float, vim.tbl_extend('force', opts, { desc = 'Diagnostics (float)' }))
+        vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, vim.tbl_extend('force', opts, { desc = 'Next diagnostic' }))
+        vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, vim.tbl_extend('force', opts, { desc = 'Prev diagnostic' }))
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, vim.tbl_extend('force', opts, { desc = 'LSP hover' }))
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, vim.tbl_extend('force', opts, { desc = 'Go to definition' }))
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, vim.tbl_extend('force', opts, { desc = 'Go to declaration' }))
+        vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, vim.tbl_extend('force', opts, { desc = 'Type definition' }))
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, vim.tbl_extend('force', opts, { desc = 'List references' }))
+        vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, vim.tbl_extend('force', opts, { desc = 'Code action' }))
+        vim.keymap.set('n', 'gn', vim.lsp.buf.rename, vim.tbl_extend('force', opts, { desc = 'Rename symbol' }))
+      end,
+    })
   end,
 }
 
