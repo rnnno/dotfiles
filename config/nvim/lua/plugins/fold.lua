@@ -21,7 +21,7 @@ return {
         if ts_only[filetype] then
           return { 'treesitter', 'indent' }
         end
-        return { 'lsp', 'treesitter', 'indent' }
+        return { 'lsp', 'indent' }
       end,
       close_fold_kinds_for_ft = {
         default = { 'imports' },
