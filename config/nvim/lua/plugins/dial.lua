@@ -15,8 +15,10 @@ return {
     })
 
     local map = require('dial.map')
+    local keymap = vim.keymap.set
+    local opts = { noremap = true, silent = true }
     local function set(mode, lhs, rhs, desc)
-      vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc })
+      keymap(mode, lhs, rhs, vim.tbl_extend('force', {}, opts, { desc = desc }))
     end
 
     set('n', '<C-a>', map.inc_normal(), 'Dial increment')

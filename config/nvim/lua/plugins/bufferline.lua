@@ -33,10 +33,12 @@ return {
       })
 
       local keymap = vim.keymap.set
-      keymap('n', '<A-,>', '<CMD>BufferLineCyclePrev<CR>')
-      keymap('n', '<A-.>', '<CMD>BufferLineCycleNext<CR>')
+      local opts = { noremap = true, silent = true }
 
-      keymap('n', '<leader>d', "<CMD>lua require('bufdelete').bufdelete(0, true)<CR>")
+      keymap('n', '<A-,>', '<CMD>BufferLineCyclePrev<CR>', opts)
+      keymap('n', '<A-.>', '<CMD>BufferLineCycleNext<CR>', opts)
+
+      keymap('n', '<leader>d', "<CMD>lua require('bufdelete').bufdelete(0, true)<CR>", opts)
     end,
   },
   {
@@ -52,14 +54,17 @@ return {
         preview = true,
       },
     },
-    config = function(_, opts)
+    config = function(_, config_opts)
       local dropbar = require('dropbar')
-      dropbar.setup(opts)
+      dropbar.setup(config_opts)
 
       local api = require('dropbar.api')
-      vim.keymap.set('n', '<leader>bb', function()
+      local keymap = vim.keymap.set
+      local opts = { noremap = true, silent = true }
+
+      keymap('n', '<leader>bb', function()
         api.pick()
-      end, { desc = 'Dropbar breadcrumbs picker' })
+      end, opts)
     end,
   },
 }

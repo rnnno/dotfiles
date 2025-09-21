@@ -7,9 +7,10 @@ return {
   },
   config = function()
     local keymap = vim.keymap.set
-    keymap('i', '<C-j>', '<Plug>(skkeleton-toggle)')
-    keymap('c', '<C-j>', '<Plug>(skkeleton-toggle)')
-    keymap('t', '<C-j>', '<plug>(skkeleton-toggle)')
+    local opts = { silent = true, remap = true }
+    keymap('i', '<C-j>', '<Plug>(skkeleton-toggle)', opts)
+    keymap('c', '<C-j>', '<Plug>(skkeleton-toggle)', opts)
+    keymap('t', '<C-j>', '<plug>(skkeleton-toggle)', opts)
 
     local dictionaries = {}
     local handle = io.popen('ls $HOME/.skk/*')

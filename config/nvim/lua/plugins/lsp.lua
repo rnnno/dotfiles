@@ -1,3 +1,5 @@
+local keymap = vim.keymap.set
+
 return {
   {
     'neovim/nvim-lspconfig',
@@ -7,8 +9,8 @@ return {
     },
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
-      local server_configs = require('lsp')
-      local servers = vim.tbl_keys(server_configs)
+      local lsp = require('lsp')
+      local servers = vim.tbl_keys(lsp.servers)
       require('mason').setup({
         ui = { border = 'single' },
       })
@@ -17,46 +19,9 @@ return {
         automatic_installation = true,
       })
 
-      vim.diagnostic.config({
-        virtual_text = false,
-        virtual_lines = { current_line = true },
-        float = { border = 'single' },
-        severity_sort = true,
-      })
+      lsp.setup_common()
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      local completion_item = capabilities.textDocument.completion.completionItem
-      completion_item.snippetSupport = true
-      completion_item.preselectSupport = true
-      completion_item.insertReplaceSupport = true
-      completion_item.labelDetailsSupport = true
-      completion_item.deprecatedSupport = true
-      completion_item.commitCharactersSupport = true
-      completion_item.tagSupport = { valueSet = { 1 } }
-      completion_item.resolveSupport = {
-        properties = {
-          'documentation',
-          'detail',
-          'additionalTextEdits',
-        },
-      }
-
-      capabilities.textDocument.foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true,
-      }
-
-      local default_handlers = {
-        ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'single' }),
-        ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'single' }),
-      }
-
-      vim.lsp.config('*', {
-        capabilities = capabilities,
-        handlers = default_handlers,
-      })
-
-      for name, config in pairs(server_configs) do
+      for name, config in pairs(lsp.servers) do
         vim.lsp.config(name, config)
       end
 
@@ -68,11 +33,10 @@ return {
       vim.api.nvim_create_autocmd('LspAttach', {
         group = group,
         callback = function(event)
-          local opts = { silent = true, buffer = event.buf }
+          local opts = { noremap = true, silent = true, buffer = event.buf }
 
           local function map(lhs, rhs, desc)
-            local map_opts = vim.tbl_extend('force', {}, opts, { desc = desc })
-            vim.keymap.set('n', lhs, rhs, map_opts)
+            keymap('n', lhs, rhs, vim.tbl_extend('force', {}, opts, { desc = desc }))
           end
 
           map('ge', vim.diagnostic.open_float, 'Diagnostics (float)')

@@ -107,6 +107,7 @@ return {
         },
         cmdline = {
           mark = '[CMD]',
+          isVolatile = true,
         },
         ['cmdline-history'] = {
           mark = '[HIST]',
@@ -151,20 +152,22 @@ return {
         highlight_normal_menu = 'Normal',
       })
 
-      keymap('i', '<C-n>', '<cmd>call pum#map#select_relative(+1)<CR>')
-      keymap('i', '<C-p>', '<cmd>call pum#map#select_relative(-1)<CR>')
-      keymap('i', '<C-y>', '<cmd>call pum#map#confirm()<CR>')
-      keymap('i', '<C-e>', '<cmd>call pum#map#cancel()<CR>')
+      local opts = { noremap = true, silent = true }
+
+      keymap('i', '<C-n>', '<cmd>call pum#map#select_relative(+1)<CR>', opts)
+      keymap('i', '<C-p>', '<cmd>call pum#map#select_relative(-1)<CR>', opts)
+      keymap('i', '<C-y>', '<cmd>call pum#map#confirm()<CR>', opts)
+      keymap('i', '<C-e>', '<cmd>call pum#map#cancel()<CR>', opts)
 
 
       vim.cmd [[
       nnoremap :       <Cmd>call CommandlinePre()<CR>:
 
       function! CommandlinePre() abort
-      cnoremap <Tab>   <Cmd>call pum#map#insert_relative(+1)<CR>
-      cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
-      cnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
-      cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
+      cnoremap <Tab>   <Cmd>call pum#map#select_relative(+1)<CR>
+      cnoremap <S-Tab> <Cmd>call pum#map#select_relative(-1)<CR>
+      cnoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
+      cnoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
       cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
       cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
 
@@ -211,3 +214,4 @@ return {
     end,
   },
 }
+

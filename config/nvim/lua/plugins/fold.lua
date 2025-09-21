@@ -5,10 +5,13 @@ return {
     'kevinhwang91/promise-async',
   },
   config = function()
-    vim.o.foldcolumn = '0'
-    vim.o.foldlevel = 99
-    vim.o.foldlevelstart = 99
-    vim.o.foldenable = true
+    vim.opt.foldcolumn = '0'
+    vim.opt.foldlevel = 99
+    vim.opt.foldlevelstart = 99
+    vim.opt.foldenable = true
+
+    local keymap = vim.keymap.set
+    local opts = { noremap = true, silent = true }
 
     local ufo = require('ufo')
 
@@ -35,7 +38,7 @@ return {
     })
 
     local function map(lhs, rhs, desc)
-      vim.keymap.set('n', lhs, rhs, { silent = true, desc = desc })
+      keymap('n', lhs, rhs, vim.tbl_extend('force', {}, opts, { desc = desc }))
     end
 
     map('zR', ufo.openAllFolds, 'UFO: すべて開く')
