@@ -29,32 +29,24 @@ local function buffer_path(bufnr)
   return name
 end
 
-function M.find_deno_root(bufnr)
+local function resolve_root(bufnr, matcher)
   local path = buffer_path(bufnr)
   if not path then
     return nil
   end
-  return deno_root(path)
+  return matcher(path)
+end
+
+function M.find_deno_root(bufnr)
+  return resolve_root(bufnr, deno_root)
 end
 
 function M.find_node_root(bufnr)
-  local path = buffer_path(bufnr)
-  if not path then
-    return nil
-  end
-  return node_root(path)
+  return resolve_root(bufnr, node_root)
 end
 
 function M.find_eslint_root(bufnr)
-  local path = buffer_path(bufnr)
-  if not path then
-    return nil
-  end
-  return eslint_root(path)
-end
-
-function M.is_deno_project(bufnr)
-  return M.find_deno_root(bufnr) ~= nil
+  return resolve_root(bufnr, eslint_root)
 end
 
 return M

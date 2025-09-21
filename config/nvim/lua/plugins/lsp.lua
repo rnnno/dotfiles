@@ -51,10 +51,7 @@ return {
     })
 
     for name, config in pairs(server_configs) do
-      vim.lsp.config(name, vim.tbl_deep_extend('force', {
-        capabilities = capabilities,
-        handlers = default_handlers,
-      }, config))
+      vim.lsp.config(name, config)
     end
 
     if #servers > 0 then
@@ -67,16 +64,21 @@ return {
       callback = function(event)
         local opts = { silent = true, buffer = event.buf }
 
-        vim.keymap.set('n', 'ge', vim.diagnostic.open_float, vim.tbl_extend('force', opts, { desc = 'Diagnostics (float)' }))
-        vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, vim.tbl_extend('force', opts, { desc = 'Next diagnostic' }))
-        vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, vim.tbl_extend('force', opts, { desc = 'Prev diagnostic' }))
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, vim.tbl_extend('force', opts, { desc = 'LSP hover' }))
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, vim.tbl_extend('force', opts, { desc = 'Go to definition' }))
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, vim.tbl_extend('force', opts, { desc = 'Go to declaration' }))
-        vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, vim.tbl_extend('force', opts, { desc = 'Type definition' }))
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, vim.tbl_extend('force', opts, { desc = 'List references' }))
-        vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, vim.tbl_extend('force', opts, { desc = 'Code action' }))
-        vim.keymap.set('n', 'gn', vim.lsp.buf.rename, vim.tbl_extend('force', opts, { desc = 'Rename symbol' }))
+        local function map(lhs, rhs, desc)
+          local map_opts = vim.tbl_extend('force', {}, opts, { desc = desc })
+          vim.keymap.set('n', lhs, rhs, map_opts)
+        end
+
+        map('ge', vim.diagnostic.open_float, 'Diagnostics (float)')
+        map('g]', vim.diagnostic.goto_next, 'Next diagnostic')
+        map('g[', vim.diagnostic.goto_prev, 'Prev diagnostic')
+        map('K', vim.lsp.buf.hover, 'LSP hover')
+        map('gd', vim.lsp.buf.definition, 'Go to definition')
+        map('gD', vim.lsp.buf.declaration, 'Go to declaration')
+        map('gt', vim.lsp.buf.type_definition, 'Type definition')
+        map('gr', vim.lsp.buf.references, 'List references')
+        map('ga', vim.lsp.buf.code_action, 'Code action')
+        map('gn', vim.lsp.buf.rename, 'Rename symbol')
       end,
     })
   end,
