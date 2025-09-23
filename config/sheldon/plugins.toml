@@ -10,6 +10,9 @@ defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
 [plugins.starship]
 inline = "eval \"$(starship init zsh)\""
 
+[plugins.rbenv]
+inline = "eval \"$(rbenv init -)\""
+
 # [plugins.thefuck]
 # inline = "eval $(thefuck --alias fuck)"
 
