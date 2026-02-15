@@ -13,5 +13,6 @@ chpwd () { eza --group-directories-first --icons }
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(rbenv init - --no-rehash zsh)"
 eval "$(sheldon source)"
 
