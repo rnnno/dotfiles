@@ -11,6 +11,7 @@ return {
     keymap('i', '<C-j>', '<Plug>(skkeleton-toggle)', opts)
     keymap('c', '<C-j>', '<Plug>(skkeleton-toggle)', opts)
     keymap('t', '<C-j>', '<plug>(skkeleton-toggle)', opts)
+    keymap('n', '<C-j>', 'i<plug>(skkeleton-toggle)', opts)
 
     local dictionaries = {}
     local handle = io.popen('ls $HOME/.skk/*')
@@ -25,7 +26,7 @@ return {
       eggLikeNewline = true,
       registerConvertResult = true,
       globalDictionaries = dictionaries,
-      keepState = true,
+      keepState = false,
     })
 
     local augroup = vim.api.nvim_create_augroup
@@ -39,13 +40,13 @@ return {
         vim.fn['skkeleton#config']({ keepState = false })
       end
     })
-    autocmd('BufEnter', {
-      group = 'skkeletonKeepState',
-      pattern = { '*.txt', '*.md' },
-      callback = function()
-        vim.fn['skkeleton#config']({ keepState = true })
-      end
-    })
+    -- autocmd('BufEnter', {
+    --   group = 'skkeletonKeepState',
+    --   pattern = { '*.txt', '*.md' },
+    --   callback = function()
+    --     vim.fn['skkeleton#config']({ keepState = true })
+    --   end
+    -- })
 
     vim.fn['skkeleton#register_kanatable'](
       'rom',
@@ -56,3 +57,4 @@ return {
     )
   end,
 }
+
