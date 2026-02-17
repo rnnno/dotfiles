@@ -6,8 +6,7 @@ window-theme = dark
 # ============================================================
 # Font
 # ============================================================
-font-family = "FiraCode Nerd Font"
-font-variation = wght=500
+font-family = "FiraCode Nerd Font Mono Med"
 
 font-feature = +cv01
 font-feature = +cv02
