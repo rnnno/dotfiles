@@ -1,0 +1,94 @@
+# ============================================================
+# Theme
+# ============================================================
+window-theme = dark
+
+# ============================================================
+# Font
+# ============================================================
+font-family = "FiraCode Nerd Font"
+font-variation = wght=500
+
+font-feature = +cv01
+font-feature = +cv02
+font-feature = +cv06
+font-feature = +cv23
+font-feature = +cv24
+font-feature = +cv25
+font-feature = +cv26
+font-feature = +cv29
+font-feature = +cv32
+font-feature = +ss02
+font-feature = +ss03
+font-feature = +ss05
+font-feature = +ss07
+font-feature = +ss09
+
+font-size = 12
+
+# ============================================================
+# Window Appearance
+# ============================================================
+window-padding-x = 8
+window-padding-y = 6
+window-padding-balance = true
+
+background-opacity = 0.65
+background-blur = true
+
+macos-window-buttons = visible
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = hidden
+macos-dock-drop-behavior = window
+macos-option-as-alt = true
+macos-window-shadow = true
+
+title = 👻
+
+window-decoration = auto
+
+# ============================================================
+# Behavior
+# ============================================================
+window-inherit-working-directory = true
+window-vsync = true
+
+# タブ運用前提
+macos-non-native-fullscreen = false
+
+# Auto update
+auto-update = download
+
+# Clipboard
+clipboard-read = allow
+clipboard-write = allow
+
+# ============================================================
+# Keybinds
+# ============================================================
+
+keybind = cmd+,=open_config
+keybind = cmd+shift+,=reload_config
+
+# Splits
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+
+# Pane navigation
+keybind = cmd+[=goto_split:previous
+keybind = cmd+]=goto_split:next
+
+# Tabs
+keybind = cmd+t=new_tab
+keybind = cmd+shift+]=next_tab
+keybind = cmd+shift+[=previous_tab
+
+# macOSが奪う cmd+tab の代替
+keybind = ctrl+tab=next_tab
+keybind = ctrl+shift+tab=previous_tab
+
+# Font size
+keybind = cmd+=increase_font_size:1
+keybind = cmd+-=decrease_font_size:1
+keybind = cmd+0=reset_font_size
+

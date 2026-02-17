@@ -24,11 +24,10 @@ config/thefuck/__pycache__
 !config/wezterm
 !config/kitty
 !config/alacritty
+!config/ghostty
 
 !config/gh
 config/gh/hosts.yml
 
 .DS_store
 .serena
-AGENTS.md
-
