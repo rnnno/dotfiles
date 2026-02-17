@@ -1,6 +1,11 @@
 ---
 name: commit-branch-rule
-description: Enforce this repository's git workflow when the user asks to create a branch, commit, merge, or push (for example: "ブランチ切って", "コミットして", "pushして", "マージして"), or asks how to write commit messages. Start from main, work on task/<topic>, commit only requested files with the defined message format, merge back into main, and push.
+description: >-
+  Enforce this repository's git workflow when the user asks to create a branch,
+  commit, merge, or push (for example: ブランチ切って, コミットして, pushして,
+  マージして), or asks how to write commit messages. Start from main, work on
+  task/<topic>, commit only requested files with the defined message format,
+  merge back into main, and push.
 ---
 
 # Goal
