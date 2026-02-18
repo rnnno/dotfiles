@@ -1,6 +1,8 @@
 export ZDOTDIR=$HOME/.config/zsh
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 
+export PATH="$HOME/.local/bin:$PATH"
+
 export CARGO=$HOME/.cargo/bin
 export PATH="$CARGO:$PATH"
 
