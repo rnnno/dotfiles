@@ -1,7 +1,7 @@
 return {
   {
     'folke/noice.nvim',
-    event = 'VeryLazy',
+    event = 'VimEnter',
     dependencies = {
       'MunifTanjim/nui.nvim',
       'rcarriga/nvim-notify',
@@ -25,7 +25,7 @@ return {
   },
   {
     'rcarriga/nvim-notify',
-    event = 'VeryLazy',
+    event = 'VimEnter',
     dependencies = {
       'nvim-telescope/telescope.nvim',
       'nvim-lua/plenary.nvim',
@@ -39,3 +39,4 @@ return {
     end,
   }
 }
+
