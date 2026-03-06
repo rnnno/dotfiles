@@ -4,6 +4,7 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
+      'b0o/SchemaStore.nvim',
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
     },
@@ -72,4 +73,3 @@ return {
     opts = {},
   },
 }
-
