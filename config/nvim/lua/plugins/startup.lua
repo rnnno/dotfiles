@@ -55,7 +55,7 @@ return {
     }
 
     dashboard.section.buttons.val = {
-      dashboard.button('f', '󰥨  Find file', '<CMD>Telescope file_browser<CR>'),
+      dashboard.button('f', '󰥨  Find file', '<CMD>Telescope find_files<CR>'),
       dashboard.button('g', '󰱼  Find text', '<CMD>Telescope live_grep<CR>'),
       dashboard.button('r', '  Recent file', '<CMD>Telescope oldfiles<CR>'),
       dashboard.button('u', '󰊳  Update', '<CMD>Lazy sync<CR>'),
