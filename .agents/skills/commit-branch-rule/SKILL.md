@@ -1,31 +1,25 @@
 ---
 name: commit-branch-rule
 description: >-
-  Enforce this repository's git workflow when the user asks to create a branch,
-  commit, or merge (for example: ブランチ切って, コミットして, マージして), or
-  asks how to write commit messages. Start from main, work on
-  task/<topic>, commit only requested files with the defined message format,
-  and merge back into main.
+  Enforce this repository's git workflow when the user asks to commit, merge,
+  or asks how to write commit messages. By default, commit directly on main
+  and include only requested files with the defined message format.
 ---
 
 # Goal
-`main` から作業ブランチを切り、依頼範囲だけをコミットし、`main` へマージする。
+通常は `main` へ依頼範囲だけを直接コミットする。
 
 # Mandatory Behavior
 - コミット依頼を受けたら `git status --short --branch` で変更一覧を確認する。
-- 「コミットして」の依頼では、特に停止条件の指定がない限り `main` へのマージまで実行する。
+- 「コミットして」の依頼では、特に停止条件の指定がない限り `main` へ直接コミットする。
 - 依頼範囲外の変更をコミットに含めない。
 - コミット後にコミットID、コミットメッセージ、対象ファイルを報告する。
 
 # Standard Workflow
-1. `main` を最新化する。  
-   `git checkout main && git pull --ff-only origin main`
-2. `main` から作業ブランチを作成する。  
-   `git checkout -b task/<topic>`
-3. 作業ブランチで変更をコミットする。  
+1. 現在の作業ブランチを確認する（未指定時は `main` を優先）。  
+   `git status --short --branch`
+2. 依頼範囲の変更のみをコミットする。  
    `git add <files> && git commit -m "<message>"`
-4. 作業ブランチを `main` にマージする。  
-   `git checkout main && git merge --no-ff task/<topic>`
 
 # Commit Message Rule
 - 形式は `<type>: <summary>` とする。
@@ -34,9 +28,9 @@ description: >-
 - 1コミット1目的にし、メッセージはその目的だけを表す。
 
 # Rules
-- `main` へ直接コミットしない。
-- マージ前に `git status` がクリーンであることを確認する。
-- 競合がある場合は作業ブランチで解消してからマージする。
+- 未指定時は `main` 直コミットを優先する。
+- 必要がある場合はブランチ作成・マージ運用も許容する。
+- コミット前に `git status` で対象差分を再確認する。
 
 # Output Style
 - 実行したコマンドの流れを短く報告する。
