@@ -17,10 +17,13 @@ COMMAND="$(printf '%s' "$TOOL_INPUT" | jq -r '.tool_input.command // ""' 2>/dev/
 
 # ── Only intercept actual `git commit` commands ──────────────────────────────
 # Pass through: git commit --help, git commit-tree, git status, etc.
-if ! printf '%s' "$COMMAND" | grep -qE '^git commit($| [^-]| -[^-]| --[^h])' 2>/dev/null; then
+if ! printf '%s' "$COMMAND" | grep -qE '(^|[;&|]) *git commit($| [^-]| -[^-]| --[^h])' 2>/dev/null; then
     exit 0
 fi
-if printf '%s' "$COMMAND" | grep -qE '(--help|-h\b)'; then
+HELP_SEGMENT="$(printf '%s' "$COMMAND" | grep -oE '(^|[;&|]) *git commit[^;&|]*' | head -n1)" || true
+HELP_SEGMENT="$(printf '%s' "$HELP_SEGMENT" | sed -E 's/"[^"]*"//g')"
+HELP_SEGMENT="$(printf '%s' "$HELP_SEGMENT" | sed -E "s/'[^']*'//g")"
+if printf '%s' "$HELP_SEGMENT" | grep -qE '(--help|[[:space:]]-h([[:space:]]|$))'; then
     exit 0
 fi
 
@@ -113,6 +116,26 @@ ${LINT_OUTPUT}" \
             jq -n --arg r "TypeScript errors must be fixed before committing.
 
 ${TC_OUTPUT}" \
+                '{"hookSpecificOutput": {"hookEventName": "PreToolUse", "permissionDecision": "deny", "permissionDecisionReason": $r}}'
+            exit 0
+        fi
+    fi
+
+    # Unit tests (vitest/jest etc. via `npm test`) — fast gate before AI review.
+    # E2E suites (build + external deps like DynamoDB/Mailosaur) are intentionally
+    # NOT run here. Bypass for a single commit with SKIP_PRECOMMIT_TESTS=1.
+    TEST_SCRIPT="$(jq -r '.scripts.test // ""' package.json 2>/dev/null || echo "")"
+    if [ "${SKIP_PRECOMMIT_TESTS:-}" != "1" ] && [ -f "package.json" ] && [ -n "$TEST_SCRIPT" ] && ! printf '%s' "$TEST_SCRIPT" | grep -q 'no test specified'; then
+        set +e
+        TEST_OUTPUT="$(CI=true npm test 2>&1)"
+        TEST_EXIT=$?
+        set -e
+
+        if [ "$TEST_EXIT" -ne 0 ]; then
+            cd "$ORIG_DIR"
+            jq -n --arg r "Unit tests must pass before committing. Fix the failures below and retry, or set SKIP_PRECOMMIT_TESTS=1 to bypass for this commit.
+
+${TEST_OUTPUT}" \
                 '{"hookSpecificOutput": {"hookEventName": "PreToolUse", "permissionDecision": "deny", "permissionDecisionReason": $r}}'
             exit 0
         fi
