@@ -35,11 +35,17 @@ link_claude() {
     CLAUDE.md
     hooks/pre-commit-review.sh
     hooks/review-approve.sh
+    hooks/plan-review.sh
     agents/code-reviewer.md
     agents/review-fixer.md
+    agents/verifier.md
+    agents/judge.md
+    commands/verify-criteria.md
+    commands/bestof.md
+    commands/checkpoint.md
   )
 
-  mkdir -p "$HOME/.claude/hooks" "$HOME/.claude/agents"
+  mkdir -p "$HOME/.claude/hooks" "$HOME/.claude/agents" "$HOME/.claude/commands"
 
   for f in "${claude_files[@]}"; do
     if [ -e "$HOME/.claude/$f" ] && [ ! -L "$HOME/.claude/$f" ]; then
