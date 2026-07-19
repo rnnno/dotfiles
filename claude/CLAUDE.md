@@ -85,3 +85,7 @@ advisor は常に Fable（`advisorModel: fable`）を使う方針。ただし現
 
 <!-- TEMP-ADVISOR-FABLE-BUG end -->
 
+## マシンローカル設定
+
+@~/.claude/CLAUDE.local.md
+

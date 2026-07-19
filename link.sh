@@ -57,6 +57,8 @@ link_claude() {
     ln -snf "$DOTFILES_DIR/claude/$f" "$HOME/.claude/$f"
   done
 
+  [ -f "$HOME/.claude/CLAUDE.local.md" ] || touch "$HOME/.claude/CLAUDE.local.md"
+
 }
 
 link
