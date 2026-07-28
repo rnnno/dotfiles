@@ -1,29 +1,56 @@
+local ensure_installed = {
+  'c',
+  'cpp',
+  'vim',
+  'lua',
+  'go',
+  'html',
+  'css',
+  'tsx',
+  'typescript',
+}
+
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    lazy = true,
-    event = 'VeryLazy',
-    dependencies = {
-      'yioneko/nvim-yati',
-    },
+    branch = 'main',
+    lazy = false, -- main ブランチは lazy-load 非対応
+    build = ':TSUpdate',
     config = function()
-      require('nvim-treesitter.configs').setup({
-        modules = {},
-        ignore_install = {},
-        sync_install = true,
-        ensure_installed = { 'c', 'cpp', 'vim', 'lua', 'go', 'html', 'css', 'tsx', 'typescript' },
-        auto_install = true,
-        highlight = {
-          enable = true,
-        },
+      local ts = require('nvim-treesitter')
 
-        yati = {
-          enable = true,
-          default_lazy = true,
-        },
-        indent = {
-          enable = false,
-        },
+      ts.setup({})
+
+      local installed = ts.get_installed('parsers')
+      local missing = vim.tbl_filter(function(lang)
+        return not vim.tbl_contains(installed, lang)
+      end, ensure_installed)
+      if #missing > 0 then
+        ts.install(missing)
+      end
+
+      local available
+
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('Treesitter', { clear = true }),
+        callback = function(ev)
+          local lang = vim.treesitter.language.get_lang(ev.match)
+          if not lang then
+            return
+          end
+
+          -- パーサ未導入なら取得だけ行い、ハイライトは次回オープン時から有効になる
+          if not vim.treesitter.language.add(lang) then
+            available = available or ts.get_available()
+            if not vim.tbl_contains(available, lang) then
+              return
+            end
+            ts.install(lang)
+            return
+          end
+
+          pcall(vim.treesitter.start, ev.buf, lang)
+        end,
       })
     end,
   },
