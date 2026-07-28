@@ -52,7 +52,7 @@ return {
     map('zp', function()
       local winid = ufo.peekFoldedLinesUnderCursor()
       if not winid then
-        vim.lsp.buf.hover()
+        vim.lsp.buf.hover({ border = 'single' })
       end
     end, 'UFO: 折りたたみをプレビュー')
   end,

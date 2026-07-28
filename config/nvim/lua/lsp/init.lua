@@ -1,7 +1,6 @@
 local M = {
   servers = {},
   capabilities = nil,
-  handlers = nil,
 }
 
 local files = vim.api.nvim_get_runtime_file('lua/lsp/*.lua', true)
@@ -22,7 +21,7 @@ local initialized = false
 
 function M.setup_common()
   if initialized then
-    return M.capabilities, M.handlers
+    return M.capabilities
   end
 
   vim.diagnostic.config({
@@ -54,21 +53,14 @@ function M.setup_common()
     lineFoldingOnly = true,
   }
 
-  local handlers = {
-    ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'single' }),
-    ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'single' }),
-  }
-
   vim.lsp.config('*', {
     capabilities = capabilities,
-    handlers = handlers,
   })
 
   M.capabilities = capabilities
-  M.handlers = handlers
   initialized = true
 
-  return capabilities, handlers
+  return capabilities
 end
 
 setmetatable(M, {
