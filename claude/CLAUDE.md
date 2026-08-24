@@ -66,25 +66,6 @@ revertや差分が完了したことを確認する際は、必ずターゲッ�
 
 GitHubのAPIを利用する際は、GitHub MCPではなく`gh`コマンドを使うこと。
 
-## 【一時】advisor ツール代替（Fable バグ回避）
-
-<!-- TEMP-ADVISOR-FABLE-BUG start
-     advisor は常に Fable を使う方針（advisorModel は fable のまま維持）。
-     このブロックは Fable 5 の既知バグで advisor が壊れている間だけの一時ルール。
-     解除条件: Fable バグの修正を確認したら、この節ごと丸ごと削除する（advisorModel は fable のまま）。
-     復活確認: ツール呼び出しを1つ挟んだ後に advisor() を呼び、unavailable にならず成功すれば直っている。または anthropics/claude-code#76199 のクローズを確認する。 -->
-
-advisor は常に Fable（`advisorModel: fable`）を使う方針。ただし現状、Fable advisor は既知のサーバー側バグ（会話履歴に tool_use が1つでもあると `unavailable`／anthropics/claude-code#76199 ほか）により、セッション序盤以降ほぼ使えない。
-
-そのため、Fable バグが直るまでの間、advisor に相談したい場面（アプローチ確定前・繰り返しエラーで詰まったとき・完了宣言前）では、`advisor()` を呼ぶ代わりに **Agent tool で subagent を advisor 役として spawn** して助言を得ること。
-
-- `subagent_type` は `general-purpose`。レビュー・助言のみを依頼し、ファイル編集はさせない。
-- advisor と違い subagent は現在の会話履歴を自動では受け取れない。相談内容（目的・現状・試したこと・判断したい選択肢・関連ファイルの絶対パス）をプロンプトに明示的に要約して渡すこと。
-- subagent は「より強いモデル」ではなくメインと同格だが、会話に深入りしていない独立した第三者視点として、思い込みの検出に使う。
-- `advisor()` を試して `unavailable` が返ったらこのバグ。リトライで消耗せず subagent 代替へ切り替える。`temporarily overloaded` の場合のみ次ターンで再試行してよい。
-
-<!-- TEMP-ADVISOR-FABLE-BUG end -->
-
 ## マシンローカル設定
 
 @~/.claude/CLAUDE.local.md
