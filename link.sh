@@ -11,10 +11,10 @@ link() {
     config
   )
 
-  mkdir "$BACKUP"
+  mkdir -p "$BACKUP"
 
   for f in "${dotfiles[@]}"; do
-    if [ -e "$HOME/.$f" ]; then
+    if [ -e "$HOME/.$f" ] && [ ! -L "$HOME/.$f" ]; then
       echo "$HOME/.$f is exist"
       echo "make backup"
       mv "$HOME/.$f" "$BACKUP/.$f"
