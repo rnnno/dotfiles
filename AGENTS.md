@@ -30,22 +30,7 @@
 
 ## Branch Policy
 
-- 運用ブランチは `main` とする。
-- 変更は必ず `main` から作業ブランチを作成して行う。
-- `main` へ直接コミットしない。
-
-## Branch Start
-
-1. `git checkout main`
-2. `git pull --ff-only origin main`
-3. `git checkout -b task/<topic>`
-
-## Commit And Merge
-
-1. 作業ブランチで変更をコミットする
-2. `git checkout main`
-3. `git merge --no-ff task/<topic>`
-4. `git push origin main`
+- `main` に直接コミットする。
 
 ## Commit Message Rule
 
@@ -56,5 +41,4 @@
 
 ## Safety Checks
 
-- マージ前に `git status --short --branch` を確認する。
-- 競合が出た場合は作業ブランチで解消してから再マージする。
+- コミット前に `git status --short --branch` で対象差分を確認する。
