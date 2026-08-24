@@ -61,6 +61,46 @@ link_claude() {
 
 }
 
+link_skills() {
+  DOTFILES_DIR="$(pwd)"
+  BACKUP="$HOME/.backup"
+  SKILLS_SRC="$DOTFILES_DIR/skills"
+
+  skill_dests=(
+    "$HOME/.claude/skills"
+    "$HOME/.agents/skills"
+  )
+
+  mkdir -p "$BACKUP"
+
+  for dest in "${skill_dests[@]}"; do
+    mkdir -p "$dest"
+    label="$(basename "$(dirname "$dest")")"
+
+    for src in "$SKILLS_SRC"/*/; do
+      [ -d "$src" ] || continue
+      name="$(basename "$src")"
+      target="$dest/$name"
+
+      if [ -e "$target" ] && [ ! -L "$target" ]; then
+        echo "$target is exist"
+        echo "make backup"
+        backup_target="$BACKUP/${label#.}-skills-$name"
+        i=2
+        while [ -e "$backup_target" ]; do
+          backup_target="$BACKUP/${label#.}-skills-$name.$i"
+          i=$((i + 1))
+        done
+        mv "$target" "$backup_target"
+      fi
+
+      echo "make link $SKILLS_SRC/$name $target"
+      ln -snf "$SKILLS_SRC/$name" "$target"
+    done
+  done
+
+}
+
 link
 link_claude
-
+link_skills
