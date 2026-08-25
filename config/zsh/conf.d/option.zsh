@@ -29,7 +29,5 @@ setopt PRINT_EXIT_VALUE
 
 setopt MARK_DIRS
 
-setopt NO_CLOBBER
-
 setopt MAGIC_EQUAL_SUBST
 
