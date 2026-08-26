@@ -8,10 +8,7 @@ github = 'romkatv/zsh-defer'
 defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
 
 [plugins.starship]
-inline = "eval \"$(starship init zsh)\""
-
-[plugins.rbenv]
-inline = "eval \"$(rbenv init -)\""
+inline = 'command -v starship >/dev/null && eval "$(starship init zsh)"'
 
 # [plugins.thefuck]
 # inline = "eval $(thefuck --alias fuck)"
@@ -25,11 +22,10 @@ apply = ['defer']
 github = 'zsh-users/zsh-autosuggestions'
 use = ['{{ name }}.zsh']
 
+# compinit より前に fpath を登録する必要があるため defer しない
 [plugins.zsh-completions]
-apply = ['defer']
 github = 'zsh-users/zsh-completions'
 
 [plugins.zsh-autopair]
 apply = ['defer']
 github = 'hlissner/zsh-autopair'
-
