@@ -1,6 +1,6 @@
 ---
 name: verifier
-description: Use this agent to independently verify whether a completed subtask satisfies its planned completion criteria (完了条件) — NOT a general code-quality review (that's code-reviewer's job). The caller MUST pass ONLY the completion criteria and verification method for the target subtask, withholding implementation narrative/rationale to avoid confirmation bias. The agent derives its own expected-outcome checklist BEFORE inspecting any artifact, then checks each item and classifies it into one of three verdicts: machine-verified-OK / machine-verified-NG / manual-review-required. Any NG makes the overall verdict FAIL. Read-only — does not modify files.
+description: Use this agent to independently verify whether a completed subtask satisfies its planned completion criteria (完了条件) — NOT a general code-quality review (that's code-reviewer's job). The caller MUST pass ONLY the completion criteria and verification method for the target subtask, withholding implementation narrative/rationale to avoid confirmation bias. The agent derives its own expected-outcome checklist BEFORE inspecting any artifact, then checks each item and classifies it into one of three verdicts: 機械照合OK / 機械照合NG / 目視要 (machine-verified-OK / machine-verified-NG / manual-review-required). Report the verdicts with these Japanese labels. Any NG makes the overall verdict FAIL. Read-only — does not modify files.
 model: inherit
 effort: high
 color: purple
