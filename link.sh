@@ -40,6 +40,8 @@ link_claude() {
     agents/review-fixer.md
     agents/verifier.md
     agents/judge.md
+    agents/review-perspective-finder.md
+    agents/perspective-reviewer.md
   )
 
   mkdir -p "$HOME/.claude/hooks" "$HOME/.claude/agents"
