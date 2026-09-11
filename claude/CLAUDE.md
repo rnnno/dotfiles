@@ -54,7 +54,7 @@
 
 ## Secrets & Exclusions
 
-`.env`、`*.key`、`id_rsa*` には触れない／内容を外部に送らない。機密情報は伏字し、ダミー値で置換。認証情報や履歴・ログ類（auth.json, history.jsonl, log/**, sessions/** など）はバージョン管理に含めず、編集しない。
+`.env`、`*.key`、`id_rsa*` には触れない（`.env.local`・`.env.example` などサフィックス付きの `.env.*` は読み書きしてよい）。`.env.*` を含め、これらの内容は外部に送らない。機密情報は伏字し、ダミー値で置換。認証情報や履歴・ログ類（auth.json, history.jsonl, log/**, sessions/** など）はバージョン管理に含めず、編集しない。
 
 ## スコープ & PR規律
 

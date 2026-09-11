@@ -15,9 +15,9 @@
       "Bash(aws sts get-caller-identity)"
     ],
     "deny": [
-      "Read(**/.env*)",
-      "Edit(**/.env*)",
-      "Write(**/.env*)",
+      "Read(//**/.env)",
+      "Edit(//**/.env)",
+      "Write(//**/.env)",
       "Read(**/*.key)",
       "Edit(**/*.key)",
       "Write(**/*.key)",
