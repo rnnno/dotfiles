@@ -93,5 +93,6 @@
   "advisorModel": "fable",
   "askUserQuestionTimeout": "never",
   "theme": "dark",
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "autoCompactEnabled": false
 }
