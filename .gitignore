@@ -25,6 +25,7 @@ config/thefuck/__pycache__
 !config/kitty
 !config/alacritty
 !config/ghostty
+!config/cmux
 
 !config/gh
 config/gh/hosts.yml
